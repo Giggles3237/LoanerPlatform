@@ -1,0 +1,2455 @@
+{
+ "settings": {
+  "dealership": "BMW/MINI of Pittsburgh",
+  "avp_min_miles": -1,
+  "program_mileage_limit": 15500,
+  "invoice_markup": 1000.0,
+  "acquisition_fee": 925.0,
+  "disposition_fee": 495.0,
+  "excess_mileage_rate": 0.25,
+  "annual_mileage_allowance": 10000,
+  "invoice_pct_under_break": 0.96,
+  "invoice_pct_over_break": 0.94,
+  "invoice_mileage_break": 1000,
+  "avp_base_deduction": 995.0,
+  "avp_pct": 0.05,
+  "avp_flat_credit": 300.0,
+  "residual_mile_charge": 0.25,
+  "residual_free_miles": 500,
+  "program_date": "2026-07-15",
+  "discount_chart": [
+   [
+    0,
+    0.0
+   ],
+   [
+    1000,
+    0.0
+   ],
+   [
+    4000,
+    800.0
+   ],
+   [
+    5000,
+    1600.0
+   ],
+   [
+    6000,
+    2500.0
+   ],
+   [
+    7500,
+    3500.0
+   ],
+   [
+    10000,
+    5900.0
+   ],
+   [
+    15000,
+    6900.0
+   ]
+  ],
+  "programs": [
+   {
+    "model": "2025 BMW 2 Series 228 xDrive Gran Coupe",
+    "money_factor": 0.00095,
+    "residual_pct": 0.57,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2025 BMW 3 Series 330i xDrive",
+    "money_factor": 0.00105,
+    "residual_pct": 0.57,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2025 BMW 4 Series 430i xDrive",
+    "money_factor": 0.002,
+    "residual_pct": 0.54,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2025 BMW 5 Series 530i xDrive",
+    "money_factor": 0.0014,
+    "residual_pct": 0.57,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2025 BMW 8 Series 840",
+    "money_factor": 0.0018,
+    "residual_pct": 0.53,
+    "lease_incentive": 8000.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2025 BMW i4 xDrive40",
+    "money_factor": 0.0002,
+    "residual_pct": 0.54,
+    "lease_incentive": 7500.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2025 BMW i5 xDrive40",
+    "money_factor": 0.0005,
+    "residual_pct": 0.5,
+    "lease_incentive": 7500.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2025 BMW X1 xDrive28i",
+    "money_factor": 0.00135,
+    "residual_pct": 0.56,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2025 BMW X3 30 xDrive",
+    "money_factor": 0.0018,
+    "residual_pct": 0.57,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2025 BMW X7 M60i",
+    "money_factor": 0.0014,
+    "residual_pct": 0.52,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW 8 Series 840i xDrive Gran Coupe",
+    "money_factor": 0.0021,
+    "residual_pct": 0.53,
+    "lease_incentive": 2000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW 4 Series 430i xDrive Gran Coupe",
+    "money_factor": 0.00235,
+    "residual_pct": 0.54,
+    "lease_incentive": 0.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW 2 Series 228 Gran Coupe",
+    "money_factor": 0.00095,
+    "residual_pct": 0.57,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW 2 Series M235i xDrive",
+    "money_factor": 0.00095,
+    "residual_pct": 0.57,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW 3 Series 330i xDrive",
+    "money_factor": 0.0009,
+    "residual_pct": 0.57,
+    "lease_incentive": 1000.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW 5 Series 530i xDrive",
+    "money_factor": 0.0014,
+    "residual_pct": 0.58,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW 7 Series 740i xDrive",
+    "money_factor": 0.0007,
+    "residual_pct": 0.53,
+    "lease_incentive": 2000.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW 8 Series 840",
+    "money_factor": 0.0021,
+    "residual_pct": 0.53,
+    "lease_incentive": 3000.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW i7 xDrive60",
+    "money_factor": 0.001,
+    "residual_pct": 0.53,
+    "lease_incentive": 7500.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW iX xDrive45",
+    "money_factor": 0.00175,
+    "residual_pct": 0.53,
+    "lease_incentive": 7500.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW X1 M35i",
+    "money_factor": 0.0017,
+    "residual_pct": 0.56,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW X1 xDrive28i",
+    "money_factor": 0.0017,
+    "residual_pct": 0.56,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW X2 xDrive28i",
+    "money_factor": 0.0022,
+    "residual_pct": 0.55,
+    "lease_incentive": 0.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW X3 30 xDrive",
+    "money_factor": 0.0017,
+    "residual_pct": 0.57,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW X5 M60i",
+    "money_factor": 0.0019,
+    "residual_pct": 0.52,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW X5 xDrive40i",
+    "money_factor": 0.0018,
+    "residual_pct": 0.52,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW X5 xDrive50e",
+    "money_factor": 0.00175,
+    "residual_pct": 0.51,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 BMW X7 xDrive40i",
+    "money_factor": 0.00135,
+    "residual_pct": 0.53,
+    "lease_incentive": 0.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 MINI Cooper",
+    "money_factor": 0.0022,
+    "residual_pct": 0.55,
+    "lease_incentive": 500.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 MINI Cooper S",
+    "money_factor": 0.0022,
+    "residual_pct": 0.58,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 MINI Cooper S Countryman",
+    "money_factor": 0.0022,
+    "residual_pct": 0.58,
+    "lease_incentive": 1000.0,
+    "lease_39_month": true
+   },
+   {
+    "model": "2026 MINI Cooper S Covertible",
+    "money_factor": 0.0023,
+    "residual_pct": 0.58,
+    "lease_incentive": 0.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 MINI Cooper Convertible",
+    "money_factor": 0.0023,
+    "residual_pct": 0.55,
+    "lease_incentive": 0.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 MINI Cooper 4 Dr",
+    "money_factor": 0.0022,
+    "residual_pct": 0.55,
+    "lease_incentive": 500.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 MINI Cooper S 4 Dr",
+    "money_factor": 0.0022,
+    "residual_pct": 0.58,
+    "lease_incentive": 500.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2025 BMW 7 Series 750e xDrive",
+    "money_factor": 0.0013,
+    "residual_pct": 0.53,
+    "lease_incentive": 5750.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW 4 Series 430i Gran Coupe",
+    "money_factor": 0.00235,
+    "residual_pct": 0.54,
+    "lease_incentive": 0.0,
+    "lease_39_month": false
+   },
+   {
+    "model": "2026 BMW 4 Series 430i xDrive",
+    "money_factor": 0.00235,
+    "residual_pct": 0.54,
+    "lease_incentive": 0.0,
+    "lease_39_month": false
+   }
+  ]
+ },
+ "primaryRows": [
+  {
+   "input": {
+    "stock": "PB3255",
+    "model": "2025 BMW 2 Series 228 xDrive Gran Coupe",
+    "odometer": 9355,
+    "listPrice": 38323,
+    "salesCost": 37311,
+    "msrp": 45475
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42746.5,
+    "avp": 1924.0,
+    "mileageAdj": 3500.0,
+    "salePrice": 38322.5,
+    "term": 39,
+    "residualAmount": 23706.999999999996,
+    "leasePayment": 408,
+    "profit": 1012
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3031",
+    "model": "2025 BMW 4 Series 430i xDrive",
+    "odometer": 14237,
+    "listPrice": 47043,
+    "salesCost": 47258,
+    "msrp": 57970
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 54491.799999999996,
+    "avp": 2548.75,
+    "mileageAdj": 5900.0,
+    "salePrice": 47043,
+    "term": 39,
+    "residualAmount": 27869.550000000003,
+    "leasePayment": 641,
+    "profit": -215
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3097",
+    "model": "2025 BMW 4 Series 430i xDrive",
+    "odometer": 11717,
+    "listPrice": 46291,
+    "salesCost": 46724,
+    "msrp": 57125
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 53697.5,
+    "avp": 2506.5,
+    "mileageAdj": 5900.0,
+    "salePrice": 46291.0,
+    "term": 39,
+    "residualAmount": 28043.250000000004,
+    "leasePayment": 617,
+    "profit": -433
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3158",
+    "model": "2025 BMW 5 Series 530i xDrive",
+    "odometer": 9187,
+    "listPrice": 54311,
+    "salesCost": 52651,
+    "msrp": 63440
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 59633.6,
+    "avp": 2822.25,
+    "mileageAdj": 3500.0,
+    "salePrice": 54311,
+    "term": 39,
+    "residualAmount": 33989.049999999996,
+    "leasePayment": 619,
+    "profit": 1660
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3423",
+    "model": "2025 BMW 7 Series 750e xDrive",
+    "odometer": 150,
+    "listPrice": 104990,
+    "salesCost": 107133,
+    "msrp": 113890
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 109334.4,
+    "avp": 5344.75,
+    "mileageAdj": 0.0,
+    "salePrice": 104989.65,
+    "term": 36,
+    "residualAmount": 60449.200000000004,
+    "leasePayment": 1293,
+    "profit": -2143
+   }
+  },
+  {
+   "input": {
+    "stock": "PB2801",
+    "model": "2025 BMW 8 Series 840",
+    "odometer": 6485,
+    "listPrice": 85976,
+    "salesCost": 80498,
+    "msrp": 97895
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 92021.29999999999,
+    "avp": 4545.0,
+    "mileageAdj": 2500.0,
+    "salePrice": 85976,
+    "term": 36,
+    "residualAmount": 50388.100000000006,
+    "leasePayment": 1012,
+    "profit": 5478
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3665",
+    "model": "2026 BMW 2 Series 228 Gran Coupe",
+    "odometer": 2585,
+    "listPrice": 41867,
+    "salesCost": 44008,
+    "msrp": 45525
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42793.5,
+    "avp": 1926.5,
+    "mileageAdj": 0.0,
+    "salePrice": 41867.0,
+    "term": 39,
+    "residualAmount": 25427.999999999996,
+    "leasePayment": 485,
+    "profit": -2141
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3817",
+    "model": "2026 BMW 2 Series M235i xDrive",
+    "odometer": 2,
+    "listPrice": 50422,
+    "salesCost": 52442,
+    "msrp": 53925
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51768.0,
+    "avp": 2346.5,
+    "mileageAdj": 0.0,
+    "salePrice": 50421.5,
+    "term": 39,
+    "residualAmount": 30861.749999999996,
+    "leasePayment": 579,
+    "profit": -2020
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3649",
+    "model": "2026 BMW 2 Series M235i xDrive",
+    "odometer": 3146,
+    "listPrice": 46940,
+    "salesCost": 44505,
+    "msrp": 51225
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 48151.5,
+    "avp": 2211.5,
+    "mileageAdj": 0.0,
+    "salePrice": 46940.0,
+    "term": 39,
+    "residualAmount": 28536.749999999996,
+    "leasePayment": 544,
+    "profit": 2435
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3616",
+    "model": "2026 BMW 2 Series M235i xDrive",
+    "odometer": 2008,
+    "listPrice": 51150,
+    "salesCost": 52332,
+    "msrp": 54725
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51441.5,
+    "avp": 2386.5,
+    "mileageAdj": 0.0,
+    "salePrice": 50055.0,
+    "term": 39,
+    "residualAmount": 30816.249999999996,
+    "leasePayment": 570,
+    "profit": -1182
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3893",
+    "model": "2026 BMW 3 Series 330i xDrive",
+    "odometer": 247,
+    "listPrice": 50822,
+    "salesCost": 51687,
+    "msrp": 54365
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52190.4,
+    "avp": 2368.5,
+    "mileageAdj": 0.0,
+    "salePrice": 50821.9,
+    "term": 36,
+    "residualAmount": 31051.299999999996,
+    "leasePayment": 595,
+    "profit": -865
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3963",
+    "model": "2026 BMW 3 Series 330i xDrive",
+    "odometer": 2869,
+    "listPrice": 50522,
+    "salesCost": 49196,
+    "msrp": 55250
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51935.0,
+    "avp": 2412.75,
+    "mileageAdj": 0.0,
+    "salePrice": 50522,
+    "term": 36,
+    "residualAmount": 30900.249999999996,
+    "leasePayment": 591,
+    "profit": 1326
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3947",
+    "model": "2026 BMW 3 Series 330i xDrive",
+    "odometer": 3659,
+    "listPrice": 50945,
+    "salesCost": 48504,
+    "msrp": 54500
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51230.0,
+    "avp": 2375.25,
+    "mileageAdj": 0.0,
+    "salePrice": 49854.75,
+    "term": 36,
+    "residualAmount": 30275.249999999996,
+    "leasePayment": 588,
+    "profit": 2441
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3786",
+    "model": "2026 BMW 3 Series 330i xDrive",
+    "odometer": 3483,
+    "listPrice": 49788,
+    "salesCost": 50704,
+    "msrp": 54425
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51159.5,
+    "avp": 2371.5,
+    "mileageAdj": 0.0,
+    "salePrice": 49788.0,
+    "term": 36,
+    "residualAmount": 30276.499999999996,
+    "leasePayment": 586,
+    "profit": -916
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3962",
+    "model": "2026 BMW 3 Series 330i xDrive",
+    "odometer": 752,
+    "listPrice": 50672,
+    "salesCost": 48258,
+    "msrp": 54200
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52032.0,
+    "avp": 2360.25,
+    "mileageAdj": 0.0,
+    "salePrice": 50671.75,
+    "term": 36,
+    "residualAmount": 30830.999999999996,
+    "leasePayment": 597,
+    "profit": 2414
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3513",
+    "model": "2026 BMW 4 Series 430i xDrive",
+    "odometer": 2159,
+    "listPrice": 54471,
+    "salesCost": 54938,
+    "msrp": 58375
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 54872.5,
+    "avp": 2569.0,
+    "mileageAdj": 0.0,
+    "salePrice": 53303.5,
+    "term": 36,
+    "residualAmount": 31107.750000000004,
+    "leasePayment": 815,
+    "profit": -467
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3530",
+    "model": "2026 BMW 4 Series 430i xDrive",
+    "odometer": 849,
+    "listPrice": 53993,
+    "salesCost": 55450,
+    "msrp": 57850
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 55536.0,
+    "avp": 2542.75,
+    "mileageAdj": 0.0,
+    "salePrice": 53993,
+    "term": 36,
+    "residualAmount": 31151.750000000004,
+    "leasePayment": 835,
+    "profit": -1457
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3902",
+    "model": "2026 BMW 4 Series 430i xDrive Gran Coupe",
+    "odometer": 2702,
+    "listPrice": 51590,
+    "salesCost": 50518,
+    "msrp": 56450
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 53063.0,
+    "avp": 2472.75,
+    "mileageAdj": 0.0,
+    "salePrice": 51590,
+    "term": 36,
+    "residualAmount": 29932.500000000004,
+    "leasePayment": 793,
+    "profit": 1072
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3586",
+    "model": "2026 BMW 7 Series 740i xDrive",
+    "odometer": 475,
+    "listPrice": 103156,
+    "salesCost": 100038,
+    "msrp": 111875
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 107400.0,
+    "avp": 5244.0,
+    "mileageAdj": 0.0,
+    "salePrice": 103156.0,
+    "term": 36,
+    "residualAmount": 59300.0,
+    "leasePayment": 1276,
+    "profit": 3118
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3740",
+    "model": "2026 BMW 8 Series 840i xDrive Gran Coupe",
+    "odometer": 250,
+    "listPrice": 95103,
+    "salesCost": 92972,
+    "msrp": 103025
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 98904.0,
+    "avp": 4801.5,
+    "mileageAdj": 0.0,
+    "salePrice": 95102.5,
+    "term": 39,
+    "residualAmount": 54665.75,
+    "leasePayment": 1300,
+    "profit": 2131
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3387",
+    "model": "2026 BMW iX xDrive45",
+    "odometer": 7996,
+    "listPrice": 70407,
+    "salesCost": 60930,
+    "msrp": 81525
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 76633.5,
+    "avp": 3726.5,
+    "mileageAdj": 3500.0,
+    "salePrice": 70407.0,
+    "term": 36,
+    "residualAmount": 41334.25,
+    "leasePayment": 795,
+    "profit": 9477
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3607",
+    "model": "2026 BMW X1 M35i",
+    "odometer": 7115,
+    "listPrice": 48801,
+    "salesCost": 47841,
+    "msrp": 56125
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52757.5,
+    "avp": 2456.5,
+    "mileageAdj": 2500.0,
+    "salePrice": 48801.0,
+    "term": 39,
+    "residualAmount": 29776.250000000004,
+    "leasePayment": 621,
+    "profit": 960
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3760",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 6462,
+    "listPrice": 41820,
+    "salesCost": 41872,
+    "msrp": 47270
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 44433.799999999996,
+    "avp": 2013.75,
+    "mileageAdj": 2500.0,
+    "salePrice": 40920.049999999996,
+    "term": 39,
+    "residualAmount": 24980.7,
+    "leasePayment": 495,
+    "profit": -52
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3921",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 287,
+    "listPrice": 47700,
+    "salesCost": 46752,
+    "msrp": 47700
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45792.0,
+    "avp": 2035.25,
+    "mileageAdj": 0.0,
+    "salePrice": 44756.75,
+    "term": 39,
+    "residualAmount": 26765.250000000004,
+    "leasePayment": 557,
+    "profit": 948
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3920",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 542,
+    "listPrice": 44711,
+    "salesCost": 46110,
+    "msrp": 47650
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45744.0,
+    "avp": 2032.75,
+    "mileageAdj": 0.0,
+    "salePrice": 44711,
+    "term": 39,
+    "residualAmount": 26673.500000000004,
+    "leasePayment": 558,
+    "profit": -1399
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3890",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 1495,
+    "listPrice": 44843,
+    "salesCost": 45343,
+    "msrp": 47795
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 44927.299999999996,
+    "avp": 2040.0,
+    "mileageAdj": 0.0,
+    "salePrice": 43887.299999999996,
+    "term": 39,
+    "residualAmount": 26516.450000000004,
+    "leasePayment": 539,
+    "profit": -500
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3895",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 863,
+    "listPrice": 44620,
+    "salesCost": 45312,
+    "msrp": 47550
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45648.0,
+    "avp": 2027.75,
+    "mileageAdj": 0.0,
+    "salePrice": 44620,
+    "term": 39,
+    "residualAmount": 26537.250000000004,
+    "leasePayment": 559,
+    "profit": -692
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3755",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 2843,
+    "listPrice": 43420,
+    "salesCost": 43560,
+    "msrp": 47270
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 44433.799999999996,
+    "avp": 2013.75,
+    "mileageAdj": 0.0,
+    "salePrice": 43420,
+    "term": 39,
+    "residualAmount": 25885.45,
+    "leasePayment": 542,
+    "profit": -140
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3577",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 9015,
+    "listPrice": 40908,
+    "salesCost": 42542,
+    "msrp": 48380
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45477.2,
+    "avp": 2069.25,
+    "mileageAdj": 3500.0,
+    "salePrice": 40907.95,
+    "term": 39,
+    "residualAmount": 24964.050000000003,
+    "leasePayment": 495,
+    "profit": -1634
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3772",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 2577,
+    "listPrice": 44849,
+    "salesCost": 46432,
+    "msrp": 48875
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45942.5,
+    "avp": 2094.0,
+    "mileageAdj": 0.0,
+    "salePrice": 44848.5,
+    "term": 39,
+    "residualAmount": 26850.750000000004,
+    "leasePayment": 558,
+    "profit": -1583
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3580",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 5610,
+    "listPrice": 43385,
+    "salesCost": 40333,
+    "msrp": 48130
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45242.2,
+    "avp": 2056.75,
+    "mileageAdj": 1600.0,
+    "salePrice": 42585.45,
+    "term": 39,
+    "residualAmount": 25675.300000000003,
+    "leasePayment": 524,
+    "profit": 3052
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3736",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 4149,
+    "listPrice": 44043,
+    "salesCost": 42262,
+    "msrp": 47970
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45091.799999999996,
+    "avp": 2048.75,
+    "mileageAdj": 800.0,
+    "salePrice": 43243.049999999996,
+    "term": 39,
+    "residualAmount": 25950.950000000004,
+    "leasePayment": 535,
+    "profit": 1781
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3735",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 3687,
+    "listPrice": 44221,
+    "salesCost": 45767,
+    "msrp": 48170
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45279.799999999996,
+    "avp": 2058.75,
+    "mileageAdj": 0.0,
+    "salePrice": 44221,
+    "term": 39,
+    "residualAmount": 26178.450000000004,
+    "leasePayment": 557,
+    "profit": -1546
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3717",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 2526,
+    "listPrice": 43999,
+    "salesCost": 44016,
+    "msrp": 47920
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45044.799999999996,
+    "avp": 2046.25,
+    "mileageAdj": 0.0,
+    "salePrice": 43998.549999999996,
+    "term": 39,
+    "residualAmount": 26328.700000000004,
+    "leasePayment": 547,
+    "profit": -17
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3733",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 4345,
+    "listPrice": 44043,
+    "salesCost": 45163,
+    "msrp": 47970
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 45091.799999999996,
+    "avp": 2048.75,
+    "mileageAdj": 800.0,
+    "salePrice": 43243.049999999996,
+    "term": 39,
+    "residualAmount": 25901.950000000004,
+    "leasePayment": 537,
+    "profit": -1120
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3757",
+    "model": "2026 BMW X1 xDrive28i",
+    "odometer": 6718,
+    "listPrice": 43603,
+    "salesCost": 40862,
+    "msrp": 47475
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 44626.5,
+    "avp": 2024.0,
+    "mileageAdj": 2500.0,
+    "salePrice": 41102.5,
+    "term": 39,
+    "residualAmount": 25031.500000000004,
+    "leasePayment": 499,
+    "profit": 2741
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3585",
+    "model": "2026 BMW X2 xDrive28i",
+    "odometer": 8067,
+    "listPrice": 48930,
+    "salesCost": 48237,
+    "msrp": 56270
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52893.799999999996,
+    "avp": 2463.75,
+    "mileageAdj": 3500.0,
+    "salePrice": 47930.049999999996,
+    "term": 36,
+    "residualAmount": 29056.750000000004,
+    "leasePayment": 694,
+    "profit": 693
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3549",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 8345,
+    "listPrice": 46635,
+    "salesCost": 47454,
+    "msrp": 54815
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51526.1,
+    "avp": 2391.0,
+    "mileageAdj": 3500.0,
+    "salePrice": 46635,
+    "term": 39,
+    "residualAmount": 29283.299999999996,
+    "leasePayment": 574,
+    "profit": -819
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3667",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 5014,
+    "listPrice": 50411,
+    "salesCost": 51143,
+    "msrp": 55125
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51817.5,
+    "avp": 2406.5,
+    "mileageAdj": 1600.0,
+    "salePrice": 48811.0,
+    "term": 39,
+    "residualAmount": 30292.749999999996,
+    "leasePayment": 609,
+    "profit": -732
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3548",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 7072,
+    "listPrice": 47858,
+    "salesCost": 47684,
+    "msrp": 55065
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51761.1,
+    "avp": 2403.5,
+    "mileageAdj": 2500.0,
+    "salePrice": 47857.6,
+    "term": 39,
+    "residualAmount": 29744.049999999996,
+    "leasePayment": 596,
+    "profit": 174
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3801",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 384,
+    "listPrice": 58566,
+    "salesCost": 59548,
+    "msrp": 62875
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 60360.0,
+    "avp": 2794.0,
+    "mileageAdj": 0.0,
+    "salePrice": 58566.0,
+    "term": 39,
+    "residualAmount": 35867.75,
+    "leasePayment": 743,
+    "profit": -982
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3568",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 10510,
+    "listPrice": 46822,
+    "salesCost": 47872,
+    "msrp": 55025
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51723.5,
+    "avp": 2401.5,
+    "mileageAdj": 5900.0,
+    "salePrice": 44422.0,
+    "term": 39,
+    "residualAmount": 28861.749999999996,
+    "leasePayment": 524,
+    "profit": -1050
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3991",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 1021,
+    "listPrice": 58340,
+    "salesCost": 52881,
+    "msrp": 58340
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 54839.6,
+    "avp": 2567.25,
+    "mileageAdj": 0.0,
+    "salePrice": 53272.35,
+    "term": 39,
+    "residualAmount": 33123.549999999996,
+    "leasePayment": 664,
+    "profit": 5459
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3599",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 7683,
+    "listPrice": 48846,
+    "salesCost": 47294,
+    "msrp": 56175
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52804.5,
+    "avp": 2459.0,
+    "mileageAdj": 3500.0,
+    "salePrice": 47845.5,
+    "term": 39,
+    "residualAmount": 30223.999999999996,
+    "leasePayment": 585,
+    "profit": 1552
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3626R",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 3447,
+    "listPrice": 50189,
+    "salesCost": 50807,
+    "msrp": 54875
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51582.5,
+    "avp": 2394.0,
+    "mileageAdj": 0.0,
+    "salePrice": 50188.5,
+    "term": 39,
+    "residualAmount": 30541.999999999996,
+    "leasePayment": 641,
+    "profit": -618
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3663",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 5720,
+    "listPrice": 50634,
+    "salesCost": 51393,
+    "msrp": 55375
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52052.5,
+    "avp": 2419.0,
+    "mileageAdj": 1600.0,
+    "salePrice": 49033.5,
+    "term": 39,
+    "residualAmount": 30258.749999999996,
+    "leasePayment": 616,
+    "profit": -759
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3570R",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 3570,
+    "listPrice": 49299,
+    "salesCost": 47079,
+    "msrp": 54325
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 51065.5,
+    "avp": 2366.5,
+    "mileageAdj": 0.0,
+    "salePrice": 49299,
+    "term": 39,
+    "residualAmount": 30197.749999999996,
+    "leasePayment": 625,
+    "profit": 2220
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3675",
+    "model": "2026 BMW X3 30 xDrive",
+    "odometer": 4790,
+    "listPrice": 50546,
+    "salesCost": 48217,
+    "msrp": 56175
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 52804.5,
+    "avp": 2459.0,
+    "mileageAdj": 800.0,
+    "salePrice": 50545.5,
+    "term": 39,
+    "residualAmount": 30947.249999999996,
+    "leasePayment": 641,
+    "profit": 2329
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3826",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 7959,
+    "listPrice": 68783,
+    "salesCost": 70694,
+    "msrp": 79700
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 74918.0,
+    "avp": 3635.25,
+    "mileageAdj": 3500.0,
+    "salePrice": 68782.75,
+    "term": 39,
+    "residualAmount": 39579.25,
+    "leasePayment": 918,
+    "profit": -1911
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3937",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 3800,
+    "listPrice": 71126,
+    "salesCost": 69062,
+    "msrp": 78400
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 73696.0,
+    "avp": 3570.25,
+    "mileageAdj": 0.0,
+    "salePrice": 71125.75,
+    "term": 39,
+    "residualAmount": 39943.0,
+    "leasePayment": 974,
+    "profit": 2064
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3936",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 3293,
+    "listPrice": 74819,
+    "salesCost": 72634,
+    "msrp": 82550
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 77597.0,
+    "avp": 3777.75,
+    "mileageAdj": 0.0,
+    "salePrice": 74819,
+    "term": 39,
+    "residualAmount": 42227.75,
+    "leasePayment": 1021,
+    "profit": 2185
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3952",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 1986,
+    "listPrice": 72060,
+    "salesCost": 69754,
+    "msrp": 79450
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 74683.0,
+    "avp": 3622.75,
+    "mileageAdj": 0.0,
+    "salePrice": 72060,
+    "term": 39,
+    "residualAmount": 40942.5,
+    "leasePayment": 976,
+    "profit": 2306
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3859",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 4060,
+    "listPrice": 68612,
+    "salesCost": 66490,
+    "msrp": 75575
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 71040.5,
+    "avp": 3429.0,
+    "mileageAdj": 800.0,
+    "salePrice": 67811.5,
+    "term": 39,
+    "residualAmount": 38409.0,
+    "leasePayment": 919,
+    "profit": 2122
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3978",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 357,
+    "listPrice": 85845,
+    "salesCost": 77595,
+    "msrp": 85845
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 82411.2,
+    "avp": 3942.5,
+    "mileageAdj": 0.0,
+    "salePrice": 79468.7,
+    "term": 39,
+    "residualAmount": 44675.15,
+    "leasePayment": 1090,
+    "profit": 8250
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3935",
+    "model": "2026 BMW X5 xDrive40i",
+    "odometer": 2858,
+    "listPrice": 74330,
+    "salesCost": 72562,
+    "msrp": 82000
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 77080.0,
+    "avp": 3750.25,
+    "mileageAdj": 0.0,
+    "salePrice": 74329.75,
+    "term": 39,
+    "residualAmount": 42050.5,
+    "leasePayment": 1012,
+    "profit": 1768
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3929",
+    "model": "2026 BMW X5 xDrive50e",
+    "odometer": 2791,
+    "listPrice": 75976,
+    "salesCost": 73596,
+    "msrp": 83850
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 78819.0,
+    "avp": 3842.75,
+    "mileageAdj": 0.0,
+    "salePrice": 75976,
+    "term": 39,
+    "residualAmount": 42190.75,
+    "leasePayment": 1073,
+    "profit": 2380
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3928",
+    "model": "2026 BMW X5 xDrive50e",
+    "odometer": 3454,
+    "listPrice": 75398,
+    "salesCost": 73100,
+    "msrp": 83200
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 78208.0,
+    "avp": 3810.25,
+    "mileageAdj": 0.0,
+    "salePrice": 75397.75,
+    "term": 39,
+    "residualAmount": 41693.5,
+    "leasePayment": 1069,
+    "profit": 2298
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3707",
+    "model": "2026 BMW X5 xDrive50e",
+    "odometer": 4891,
+    "listPrice": 74931,
+    "salesCost": 72600,
+    "msrp": 82675
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 77714.5,
+    "avp": 3784.0,
+    "mileageAdj": 800.0,
+    "salePrice": 74130.5,
+    "term": 39,
+    "residualAmount": 41066.5,
+    "leasePayment": 1049,
+    "profit": 2331
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3953",
+    "model": "2026 BMW X5 xDrive50e",
+    "odometer": 3750,
+    "listPrice": 76377,
+    "salesCost": 73813,
+    "msrp": 84300
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 79242.0,
+    "avp": 3865.25,
+    "mileageAdj": 0.0,
+    "salePrice": 76376.75,
+    "term": 39,
+    "residualAmount": 42180.5,
+    "leasePayment": 1084,
+    "profit": 2564
+   }
+  },
+  {
+   "input": {
+    "stock": "PB3763",
+    "model": "2026 BMW X7 xDrive40i",
+    "odometer": 7970,
+    "listPrice": 84882,
+    "salesCost": 77711,
+    "msrp": 94755
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 89069.7,
+    "avp": 4388.0,
+    "mileageAdj": 3500.0,
+    "salePrice": 82181.7,
+    "term": 39,
+    "residualAmount": 48352.65,
+    "leasePayment": 1044,
+    "profit": 7171
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4355",
+    "model": "2026 MINI Cooper",
+    "odometer": 0,
+    "listPrice": 41490,
+    "salesCost": 38125,
+    "msrp": 41490
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 39830.4,
+    "avp": 1724.75,
+    "mileageAdj": 0.0,
+    "salePrice": 39105.65,
+    "term": 39,
+    "residualAmount": 22944.500000000004,
+    "leasePayment": 538,
+    "profit": 3365
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4324",
+    "model": "2026 MINI Cooper Convertible",
+    "odometer": 4479,
+    "listPrice": 36064,
+    "salesCost": 34306,
+    "msrp": 39005
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36664.7,
+    "avp": 1600.5,
+    "mileageAdj": 800.0,
+    "salePrice": 35264.2,
+    "term": 36,
+    "residualAmount": 20458.0,
+    "leasePayment": 539,
+    "profit": 1758
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4373",
+    "model": "2026 MINI Cooper S",
+    "odometer": 0,
+    "listPrice": 38390,
+    "salesCost": 34931,
+    "msrp": 38390
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36854.4,
+    "avp": 1569.75,
+    "mileageAdj": 0.0,
+    "salePrice": 36284.65,
+    "term": 39,
+    "residualAmount": 22391.199999999997,
+    "leasePayment": 460,
+    "profit": 3459
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4359",
+    "model": "2026 MINI Cooper S",
+    "odometer": 1546,
+    "listPrice": 40025,
+    "salesCost": 37573,
+    "msrp": 43455
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 40847.7,
+    "avp": 1823.0,
+    "mileageAdj": 0.0,
+    "salePrice": 40024.7,
+    "term": 39,
+    "residualAmount": 24942.399999999998,
+    "leasePayment": 504,
+    "profit": 2452
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4356",
+    "model": "2026 MINI Cooper S Covertible",
+    "odometer": 2097,
+    "listPrice": 39166,
+    "salesCost": 36383,
+    "msrp": 42490
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 39940.6,
+    "avp": 1774.75,
+    "mileageAdj": 0.0,
+    "salePrice": 39165.85,
+    "term": 36,
+    "residualAmount": 24244.949999999997,
+    "leasePayment": 560,
+    "profit": 2783
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4383",
+    "model": "2026 MINI Cooper S",
+    "odometer": 370,
+    "listPrice": 35753,
+    "salesCost": 36013,
+    "msrp": 38440
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36902.4,
+    "avp": 1572.25,
+    "mileageAdj": 0.0,
+    "salePrice": 35753,
+    "term": 39,
+    "residualAmount": 22327.699999999997,
+    "leasePayment": 446,
+    "profit": -260
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4321",
+    "model": "2026 MINI Cooper S",
+    "odometer": 1544,
+    "listPrice": 41360,
+    "salesCost": 38580,
+    "msrp": 44955
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42257.7,
+    "avp": 1898.0,
+    "mileageAdj": 0.0,
+    "salePrice": 41359.7,
+    "term": 39,
+    "residualAmount": 25812.899999999998,
+    "leasePayment": 521,
+    "profit": 2780
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4388",
+    "model": "2026 MINI Cooper S",
+    "odometer": 0,
+    "listPrice": 38390,
+    "salesCost": 36784,
+    "msrp": 38390
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36854.4,
+    "avp": 1569.75,
+    "mileageAdj": 0.0,
+    "salePrice": 36284.65,
+    "term": 39,
+    "residualAmount": 22391.199999999997,
+    "leasePayment": 460,
+    "profit": 1606
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4341",
+    "model": "2026 MINI Cooper S",
+    "odometer": 2370,
+    "listPrice": 40634,
+    "salesCost": 37910,
+    "msrp": 44140
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 41491.6,
+    "avp": 1857.25,
+    "mileageAdj": 0.0,
+    "salePrice": 40634,
+    "term": 39,
+    "residualAmount": 25133.699999999997,
+    "leasePayment": 516,
+    "profit": 2724
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4331",
+    "model": "2026 MINI Cooper S",
+    "odometer": 0,
+    "listPrice": 37305,
+    "salesCost": 37732,
+    "msrp": 37305
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 35812.799999999996,
+    "avp": 1515.5,
+    "mileageAdj": 0.0,
+    "salePrice": 35297.299999999996,
+    "term": 39,
+    "residualAmount": 21761.899999999998,
+    "leasePayment": 447,
+    "profit": -427
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4308",
+    "model": "2026 MINI Cooper S",
+    "odometer": 5653,
+    "listPrice": 35502,
+    "salesCost": 37086,
+    "msrp": 43455
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 40847.7,
+    "avp": 1823.0,
+    "mileageAdj": 1600.0,
+    "salePrice": 35502,
+    "term": 39,
+    "residualAmount": 23915.649999999998,
+    "leasePayment": 402,
+    "profit": -1584
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4338",
+    "model": "2026 MINI Cooper S",
+    "odometer": 904,
+    "listPrice": 36148,
+    "salesCost": 32812,
+    "msrp": 38240
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36710.4,
+    "avp": 1562.25,
+    "mileageAdj": 0.0,
+    "salePrice": 36148,
+    "term": 39,
+    "residualAmount": 22078.199999999997,
+    "leasePayment": 463,
+    "profit": 3336
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4351R",
+    "model": "2026 MINI Cooper S",
+    "odometer": 254,
+    "listPrice": 36599,
+    "salesCost": 33283,
+    "msrp": 37390
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 35894.4,
+    "avp": 1519.75,
+    "mileageAdj": 0.0,
+    "salePrice": 35374.65,
+    "term": 39,
+    "residualAmount": 21747.699999999997,
+    "leasePayment": 449,
+    "profit": 3316
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4325",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 2097,
+    "listPrice": 37862,
+    "salesCost": 36200,
+    "msrp": 41025
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 38563.5,
+    "avp": 1701.5,
+    "mileageAdj": 0.0,
+    "salePrice": 37862.0,
+    "term": 39,
+    "residualAmount": 23395.25,
+    "leasePayment": 480,
+    "profit": 1662
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4344",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 440,
+    "listPrice": 40730,
+    "salesCost": 39176,
+    "msrp": 43275
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 41544.0,
+    "avp": 1814.0,
+    "mileageAdj": 0.0,
+    "salePrice": 40730.0,
+    "term": 39,
+    "residualAmount": 25114.5,
+    "leasePayment": 520,
+    "profit": 1554
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4322",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 641,
+    "listPrice": 41185,
+    "salesCost": 38557,
+    "msrp": 43775
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42024.0,
+    "avp": 1839.0,
+    "mileageAdj": 0.0,
+    "salePrice": 41185.0,
+    "term": 39,
+    "residualAmount": 25354.25,
+    "leasePayment": 527,
+    "profit": 2628
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4333",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 1362,
+    "listPrice": 40532,
+    "salesCost": 39025,
+    "msrp": 44025
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 41383.5,
+    "avp": 1851.5,
+    "mileageAdj": 0.0,
+    "salePrice": 40532.0,
+    "term": 39,
+    "residualAmount": 25319.0,
+    "leasePayment": 509,
+    "profit": 1507
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4311",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 1993,
+    "listPrice": 41556,
+    "salesCost": 40643,
+    "msrp": 45175
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42464.5,
+    "avp": 1909.0,
+    "mileageAdj": 0.0,
+    "salePrice": 41555.5,
+    "term": 39,
+    "residualAmount": 25828.25,
+    "leasePayment": 526,
+    "profit": 913
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4373",
+    "model": "2026 MINI Cooper S",
+    "odometer": 4150,
+    "listPrice": 38390,
+    "salesCost": 34931,
+    "msrp": 38390
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36086.6,
+    "avp": 1569.75,
+    "mileageAdj": 800.0,
+    "salePrice": 34716.85,
+    "term": 39,
+    "residualAmount": 21353.699999999997,
+    "leasePayment": 440,
+    "profit": 3459
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4359",
+    "model": "2026 MINI Cooper S Covertible",
+    "odometer": 4210,
+    "listPrice": 40025,
+    "salesCost": 37573,
+    "msrp": 43455
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 40847.7,
+    "avp": 1823.0,
+    "mileageAdj": 800.0,
+    "salePrice": 39224.7,
+    "term": 36,
+    "residualAmount": 24276.399999999998,
+    "leasePayment": 561,
+    "profit": 2452
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4356",
+    "model": "2026 MINI Cooper S Covertible",
+    "odometer": 4078,
+    "listPrice": 39166,
+    "salesCost": 36383,
+    "msrp": 42490
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 39940.6,
+    "avp": 1774.75,
+    "mileageAdj": 800.0,
+    "salePrice": 38365.85,
+    "term": 36,
+    "residualAmount": 23749.699999999997,
+    "leasePayment": 549,
+    "profit": 2783
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4383",
+    "model": "2026 MINI Cooper S",
+    "odometer": 1875,
+    "listPrice": 35753,
+    "salesCost": 36013,
+    "msrp": 38440
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36133.6,
+    "avp": 1572.25,
+    "mileageAdj": 0.0,
+    "salePrice": 35561.35,
+    "term": 39,
+    "residualAmount": 21951.449999999997,
+    "leasePayment": 450,
+    "profit": -260
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4372",
+    "model": "2026 MINI Cooper S",
+    "odometer": 298,
+    "listPrice": 37240,
+    "salesCost": 35866,
+    "msrp": 39440
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 37862.4,
+    "avp": 1622.25,
+    "mileageAdj": 0.0,
+    "salePrice": 37240,
+    "term": 39,
+    "residualAmount": 22925.699999999997,
+    "leasePayment": 474,
+    "profit": 1374
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4321",
+    "model": "2026 MINI Cooper S",
+    "odometer": 1544,
+    "listPrice": 41360,
+    "salesCost": 38580,
+    "msrp": 44955
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42257.7,
+    "avp": 1898.0,
+    "mileageAdj": 0.0,
+    "salePrice": 41359.7,
+    "term": 39,
+    "residualAmount": 25812.899999999998,
+    "leasePayment": 521,
+    "profit": 2780
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4388",
+    "model": "2026 MINI Cooper S",
+    "odometer": 0,
+    "listPrice": 38390,
+    "salesCost": 36105,
+    "msrp": 38390
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 36854.4,
+    "avp": 1569.75,
+    "mileageAdj": 0.0,
+    "salePrice": 36284.65,
+    "term": 39,
+    "residualAmount": 22391.199999999997,
+    "leasePayment": 460,
+    "profit": 2285
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4341",
+    "model": "2026 MINI Cooper S",
+    "odometer": 3868,
+    "listPrice": 40634,
+    "salesCost": 37910,
+    "msrp": 44140
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 41491.6,
+    "avp": 1857.25,
+    "mileageAdj": 0.0,
+    "salePrice": 40634,
+    "term": 39,
+    "residualAmount": 24759.199999999997,
+    "leasePayment": 525,
+    "profit": 2724
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4331",
+    "model": "2026 MINI Cooper S",
+    "odometer": 193,
+    "listPrice": 37305,
+    "salesCost": 37732,
+    "msrp": 37305
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 35812.799999999996,
+    "avp": 1515.5,
+    "mileageAdj": 0.0,
+    "salePrice": 35297.299999999996,
+    "term": 39,
+    "residualAmount": 21713.649999999998,
+    "leasePayment": 448,
+    "profit": -427
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4308",
+    "model": "2026 MINI Cooper S",
+    "odometer": 5653,
+    "listPrice": 35502,
+    "salesCost": 37086,
+    "msrp": 43455
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 40847.7,
+    "avp": 1823.0,
+    "mileageAdj": 1600.0,
+    "salePrice": 35502,
+    "term": 39,
+    "residualAmount": 23915.649999999998,
+    "leasePayment": 402,
+    "profit": -1584
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4338",
+    "model": "2026 MINI Cooper S",
+    "odometer": 2348,
+    "listPrice": 36148,
+    "salesCost": 32812,
+    "msrp": 38240
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 35945.6,
+    "avp": 1562.25,
+    "mileageAdj": 0.0,
+    "salePrice": 35383.35,
+    "term": 39,
+    "residualAmount": 21717.199999999997,
+    "leasePayment": 450,
+    "profit": 3336
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4351R",
+    "model": "2026 MINI Cooper S",
+    "odometer": 254,
+    "listPrice": 36599,
+    "salesCost": 33283,
+    "msrp": 37390
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 35894.4,
+    "avp": 1519.75,
+    "mileageAdj": 0.0,
+    "salePrice": 35374.65,
+    "term": 39,
+    "residualAmount": 21747.699999999997,
+    "leasePayment": 449,
+    "profit": 3316
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4325",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 3838,
+    "listPrice": 37862,
+    "salesCost": 36200,
+    "msrp": 41025
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 38563.5,
+    "avp": 1701.5,
+    "mileageAdj": 0.0,
+    "salePrice": 37862.0,
+    "term": 39,
+    "residualAmount": 22960.0,
+    "leasePayment": 490,
+    "profit": 1662
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4344",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 3072,
+    "listPrice": 40730,
+    "salesCost": 39176,
+    "msrp": 43275
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 40678.5,
+    "avp": 1814.0,
+    "mileageAdj": 0.0,
+    "salePrice": 39864.5,
+    "term": 39,
+    "residualAmount": 24456.5,
+    "leasePayment": 511,
+    "profit": 1554
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4322",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 5479,
+    "listPrice": 41185,
+    "salesCost": 38557,
+    "msrp": 43775
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 41148.5,
+    "avp": 1839.0,
+    "mileageAdj": 1600.0,
+    "salePrice": 38709.5,
+    "term": 39,
+    "residualAmount": 24144.75,
+    "leasePayment": 486,
+    "profit": 2628
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4333",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 4412,
+    "listPrice": 40532,
+    "salesCost": 39025,
+    "msrp": 44025
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 41383.5,
+    "avp": 1851.5,
+    "mileageAdj": 800.0,
+    "salePrice": 39732.0,
+    "term": 39,
+    "residualAmount": 24556.5,
+    "leasePayment": 505,
+    "profit": 1507
+   }
+  },
+  {
+   "input": {
+    "stock": "PM4311",
+    "model": "2026 MINI Cooper S Countryman",
+    "odometer": 1993,
+    "listPrice": 41556,
+    "salesCost": 40643,
+    "msrp": 45175
+   },
+   "expected": {
+    "status": "ok",
+    "invoice": 42464.5,
+    "avp": 1909.0,
+    "mileageAdj": 0.0,
+    "salePrice": 41555.5,
+    "term": 39,
+    "residualAmount": 25828.25,
+    "leasePayment": 526,
+    "profit": 913
+   }
+  }
+ ],
+ "edgeCases": [
+  {
+   "name": "over_miles",
+   "input": {
+    "stock": "PB0001",
+    "model": "2025 BMW 4 Series 430i xDrive",
+    "odometer": 16000,
+    "listPrice": 40000,
+    "salesCost": null,
+    "msrp": 50000,
+    "tsdMiles": null
+   },
+   "expected": {
+    "status": "over_miles",
+    "milesUsed": 16000,
+    "mileageUpdated": false,
+    "salePrice": 38949.75,
+    "leasePayment": null
+   }
+  },
+  {
+   "name": "no_program",
+   "input": {
+    "stock": "PB0002",
+    "model": "2019 BMW X9",
+    "odometer": 5000,
+    "listPrice": 40000,
+    "salesCost": null,
+    "msrp": 50000,
+    "tsdMiles": null
+   },
+   "expected": {
+    "status": "no_program",
+    "milesUsed": 5000,
+    "mileageUpdated": false,
+    "salePrice": 40000,
+    "leasePayment": null
+   }
+  },
+  {
+   "name": "no_msrp",
+   "input": {
+    "stock": "PB0003",
+    "model": "2026 MINI Cooper S",
+    "odometer": 5000,
+    "listPrice": 40000,
+    "salesCost": null,
+    "msrp": null,
+    "tsdMiles": null
+   },
+   "expected": {
+    "status": "no_msrp",
+    "milesUsed": 5000,
+    "mileageUpdated": false,
+    "salePrice": null,
+    "leasePayment": null
+   }
+  },
+  {
+   "name": "base_suffix",
+   "input": {
+    "stock": "PM4351",
+    "model": "2026 MINI Cooper S Base",
+    "odometer": 254,
+    "listPrice": 37390,
+    "salesCost": null,
+    "msrp": 37390,
+    "tsdMiles": null
+   },
+   "expected": {
+    "status": "ok",
+    "milesUsed": 254,
+    "mileageUpdated": false,
+    "salePrice": 35374.65,
+    "leasePayment": 449
+   }
+  },
+  {
+   "name": "tsd_greater",
+   "input": {
+    "stock": "PB0004",
+    "model": "2026 MINI Cooper S",
+    "odometer": 3000,
+    "listPrice": 40000,
+    "salesCost": null,
+    "msrp": 42000,
+    "tsdMiles": 4200
+   },
+   "expected": {
+    "status": "ok",
+    "milesUsed": 4200,
+    "mileageUpdated": true,
+    "salePrice": 37929.75,
+    "leasePayment": 481
+   }
+  },
+  {
+   "name": "under_500_miles",
+   "input": {
+    "stock": "PB0005",
+    "model": "2026 BMW 2 Series M235i xDrive",
+    "odometer": 2,
+    "listPrice": 50422,
+    "salesCost": null,
+    "msrp": 53925,
+    "tsdMiles": null
+   },
+   "expected": {
+    "status": "ok",
+    "milesUsed": 2,
+    "mileageUpdated": false,
+    "salePrice": 50421.5,
+    "leasePayment": 579
+   }
+  },
+  {
+   "name": "tsd_over_limit",
+   "input": {
+    "stock": "PB0006",
+    "model": "2026 MINI Cooper S",
+    "odometer": 15000,
+    "listPrice": 40000,
+    "salesCost": null,
+    "msrp": 42000,
+    "tsdMiles": 15600
+   },
+   "expected": {
+    "status": "over_miles",
+    "milesUsed": 15600,
+    "mileageUpdated": true,
+    "salePrice": 31829.75,
+    "leasePayment": null
+   }
+  }
+ ]
+}

@@ -119,27 +119,31 @@ Pin that page or the .bat file to your taskbar and it behaves like a desktop
 app. On Mac/Linux: `pip install -r requirements.txt && python -m
 loaner_platform.webapp`.
 
-### Option B — host it so the whole store can use it
+### Option B — host it on Railway so the whole store can use it
 
-The repo includes a `Dockerfile` and a `render.yaml` blueprint:
+The repo includes a `Dockerfile` and `railway.toml`; the Hobby plan
+(~$5/month including usage) keeps the app always-on with persistent
+settings storage:
 
-1. Create a free account at [render.com](https://render.com) and connect your
-   GitHub.
-2. **New + → Blueprint**, pick this repository.
-3. When prompted, set **APP_PASSWORD** (every visitor needs it — the sheet
-   shows cost data) and **ADMIN_PASSWORD** (required to open `/admin` and
-   change rates or settings). Use different values so the team can generate
-   sheets without being able to edit pricing.
-4. Render builds the Docker image and gives you a permanent URL
-   (e.g. `https://loanerplatform.onrender.com`) anyone at the store can open,
-   drop the three files into, and get the sheet.
+1. Sign up at [railway.com](https://railway.com) with your GitHub account
+   (Hobby plan).
+2. **New Project → Deploy from GitHub repo**, pick this repository. Railway
+   detects the Dockerfile and builds automatically.
+3. In the service's **Variables** tab add:
+   - `APP_PASSWORD` — every visitor needs it (the sheet shows cost data)
+   - `ADMIN_PASSWORD` — required to open `/admin` and edit pricing;
+     use a different value so the team can generate sheets without being
+     able to change rates
+   - `SETTINGS_PATH` = `/data/settings.json`
+4. Right-click the service → **Attach Volume**, mount path `/data`. This is
+   what makes admin rate edits survive deploys and restarts.
+5. In **Settings → Networking → Generate Domain** to get the public URL
+   (e.g. `https://loanerplatform.up.railway.app`) the store will use.
 
-The same Dockerfile works on Railway, Fly.io, Azure App Service, or any
-machine with Docker (`docker build -t loanerplatform . && docker run -p
-8000:8000 -e APP_PASSWORD=yourpassword loanerplatform`).
-
-Note the free Render tier sleeps after inactivity — the first visit of the
-day takes ~30 seconds to wake. Paid tiers ($7/mo) stay warm.
+Every push to the deployed branch redeploys automatically. The same
+Dockerfile also works on Render, Fly.io, Azure App Service, or any machine
+with Docker (`docker build -t loanerplatform . && docker run -p 8000:8000
+-e APP_PASSWORD=yourpassword loanerplatform`).
 
 ## Development
 

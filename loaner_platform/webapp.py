@@ -39,7 +39,27 @@ from .settings import SettingsStore, ratebook_from_dict, ratebook_to_dict
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 MB of uploads
-app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(32)
+
+
+def _secret_key() -> str:
+    """Stable session-signing key.
+
+    Without a stable key, each gunicorn worker would mint its own and admin
+    sessions would randomly bounce between signed-in and signed-out. Prefer
+    an explicit SECRET_KEY; otherwise derive one from the configured
+    passwords so all workers agree across restarts too.
+    """
+    if os.environ.get("SECRET_KEY"):
+        return os.environ["SECRET_KEY"]
+    seed = os.environ.get("ADMIN_PASSWORD", "") + os.environ.get("APP_PASSWORD", "")
+    if seed:
+        import hashlib
+
+        return hashlib.sha256(b"loanerplatform:" + seed.encode()).hexdigest()
+    return secrets.token_hex(32)  # local dev, single process
+
+
+app.secret_key = _secret_key()
 
 store = SettingsStore()
 

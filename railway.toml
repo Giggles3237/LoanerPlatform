@@ -1,0 +1,11 @@
+# Railway deployment config (https://railway.com)
+# The service builds from the Dockerfile. Attach a volume mounted at /data
+# and set SETTINGS_PATH=/data/settings.json so admin rate edits persist.
+
+[build]
+builder = "dockerfile"
+
+[deploy]
+healthcheckPath = "/healthz"
+healthcheckTimeout = 120
+restartPolicyType = "on_failure"

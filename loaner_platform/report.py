@@ -73,11 +73,11 @@ def render_email(
           <td style="padding:7px 10px;border-bottom:1px solid {BORDER};font-weight:bold;white-space:nowrap;">{_esc(u.stock_number)}</td>
           <td style="padding:7px 10px;border-bottom:1px solid {BORDER};">{_esc(u.model)}</td>
           <td style="padding:7px 10px;border-bottom:1px solid {BORDER};">{_esc(u.color)}</td>
-          <td style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;white-space:nowrap;">{miles_cell}</td>
-          <td style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_money(u.msrp)}</td>
-          <td style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_money(u.sale_price)}</td>
-          <td style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:center;">{u.term or "—"}</td>
-          <td style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;font-weight:bold;color:{BMW_BLUE};white-space:nowrap;">${u.lease_payment}<span style="font-weight:normal;color:{MUTED};font-size:11px;">/mo</span></td>
+          <td data-v="{u.odometer}" style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;white-space:nowrap;">{miles_cell}</td>
+          <td data-v="{u.msrp or 0}" style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_money(u.msrp)}</td>
+          <td data-v="{u.sale_price or 0}" style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_money(u.sale_price)}</td>
+          <td data-v="{u.term or 0}" style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:center;">{u.term or "—"}</td>
+          <td data-v="{u.lease_payment}" style="padding:7px 10px;border-bottom:1px solid {BORDER};text-align:right;font-weight:bold;color:{BMW_BLUE};white-space:nowrap;">${u.lease_payment}<span style="font-weight:normal;color:{MUTED};font-size:11px;">/mo</span></td>
         </tr>""")
 
     th = (
@@ -88,13 +88,13 @@ def render_email(
     thc = th.replace("text-align:left", "text-align:center")
 
     sections = [f"""
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
-      <tr>
-        <th {th}>Stock #</th><th {th}>Model</th><th {th}>Color</th>
-        <th {thr}>Miles</th><th {thr}>MSRP</th><th {thr}>Sale Price</th>
-        <th {thc}>Term</th><th {thr}>Lease</th>
-      </tr>
-      {''.join(rows_html)}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="sortable" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
+      <thead><tr>
+        <th {th}>Stock #<span class="arw"></span></th><th {th}>Model<span class="arw"></span></th><th {th}>Color<span class="arw"></span></th>
+        <th {thr}>Miles<span class="arw"></span></th><th {thr}>MSRP<span class="arw"></span></th><th {thr}>Sale Price<span class="arw"></span></th>
+        <th {thc}>Term<span class="arw"></span></th><th {thr}>Lease<span class="arw"></span></th>
+      </tr></thead>
+      <tbody>{''.join(rows_html)}</tbody>
     </table>"""]
 
     if updates:
@@ -102,9 +102,9 @@ def render_email(
             f"""<tr>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};font-weight:bold;">{_esc(u.stock_number)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(u.model)}</td>
-              <td style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(u.vauto_odometer)}</td>
-              <td style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;font-weight:bold;color:{AMBER_TX};">{_miles(u.tsd_miles)}</td>
-              <td style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles((u.tsd_miles or 0) - (u.vauto_odometer or 0))}</td>
+              <td data-v="{u.vauto_odometer or 0}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(u.vauto_odometer)}</td>
+              <td data-v="{u.tsd_miles or 0}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;font-weight:bold;color:{AMBER_TX};">{_miles(u.tsd_miles)}</td>
+              <td data-v="{(u.tsd_miles or 0) - (u.vauto_odometer or 0)}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles((u.tsd_miles or 0) - (u.vauto_odometer or 0))}</td>
             </tr>"""
             for u in updates
         )
@@ -116,12 +116,12 @@ def render_email(
       The fleet report shows more miles than the vAuto export. Pricing above already
       uses the higher reading; update these odometers in vAuto.
     </p>
-    <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
-      <tr>
-        <th {th}>Stock #</th><th {th}>Model</th>
-        <th {thr}>vAuto Odo</th><th {thr}>Fleet Miles</th><th {thr}>Difference</th>
-      </tr>
-      {update_rows}
+    <table role="presentation" cellpadding="0" cellspacing="0" class="sortable" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
+      <thead><tr>
+        <th {th}>Stock #<span class="arw"></span></th><th {th}>Model<span class="arw"></span></th>
+        <th {thr}>vAuto Odo<span class="arw"></span></th><th {thr}>Fleet Miles<span class="arw"></span></th><th {thr}>Difference<span class="arw"></span></th>
+      </tr></thead>
+      <tbody>{update_rows}</tbody>
     </table>""")
 
     if attention:
@@ -129,7 +129,7 @@ def render_email(
             f"""<tr>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};font-weight:bold;">{_esc(u.stock_number)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(u.model)}</td>
-              <td style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(u.odometer)}</td>
+              <td data-v="{u.odometer}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(u.odometer)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">
                 <span style="background:{AMBER_BG};color:{AMBER_TX};padding:2px 8px;border-radius:10px;font-size:11px;font-weight:bold;">
                   {_STATUS_LABELS.get(u.status, u.status)}
@@ -143,11 +143,11 @@ def render_email(
     <h2 style="font-family:{FONT};font-size:15px;color:{DARK};margin:28px 0 8px;">
       Not priced — needs attention ({len(attention)})
     </h2>
-    <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
-      <tr>
-        <th {th}>Stock #</th><th {th}>Model</th><th {thr}>Miles</th><th {th}>Reason</th><th {th}>Detail</th>
-      </tr>
-      {att_rows}
+    <table role="presentation" cellpadding="0" cellspacing="0" class="sortable" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
+      <thead><tr>
+        <th {th}>Stock #<span class="arw"></span></th><th {th}>Model<span class="arw"></span></th><th {thr}>Miles<span class="arw"></span></th><th {th}>Reason<span class="arw"></span></th><th {th}>Detail</th>
+      </tr></thead>
+      <tbody>{att_rows}</tbody>
     </table>""")
 
     if report.missing_from_vauto:
@@ -155,7 +155,7 @@ def render_email(
             f"""<tr>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};font-weight:bold;">{_esc(m.unit_number)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(m.year or '')} {_esc(m.model)}</td>
-              <td style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(m.miles)}</td>
+              <td data-v="{m.miles or 0}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(m.miles)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(m.status)}</td>
             </tr>"""
             for m in report.missing_from_vauto
@@ -167,9 +167,9 @@ def render_email(
     <p style="font-family:{FONT};font-size:12px;color:{MUTED};margin:0 0 10px;">
       Active loaners with no matching vAuto stock number — add them to vAuto to get pricing.
     </p>
-    <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
-      <tr><th {th}>Unit #</th><th {th}>Model</th><th {thr}>Miles</th><th {th}>Status</th></tr>
-      {missing_rows}
+    <table role="presentation" cellpadding="0" cellspacing="0" class="sortable" style="border-collapse:collapse;font-family:{FONT};font-size:13px;color:{DARK};">
+      <thead><tr><th {th}>Unit #<span class="arw"></span></th><th {th}>Model<span class="arw"></span></th><th {thr}>Miles<span class="arw"></span></th><th {th}>Status<span class="arw"></span></th></tr></thead>
+      <tbody>{missing_rows}</tbody>
     </table>""")
 
     if include_disclosures:
@@ -211,6 +211,11 @@ def render_email(
     </tr>
     <tr><td style="padding:18px 24px 6px;">{''.join(sections)}</td></tr>
     <tr>
+      <td style="padding:0 24px;font-family:{FONT};font-size:11px;color:{MUTED};display:none;" class="sort-hint">
+        Click any column header to sort.
+      </td>
+    </tr>
+    <tr>
       <td style="padding:18px 24px 26px;">
         <p style="font-family:{FONT};font-size:10px;color:{MUTED};line-height:1.5;margin:0;">
           Lease financing available from {_esc(rb.dealership)} through BMW/MINI Financial
@@ -232,4 +237,53 @@ def render_email(
     </tr>
   </table>
 </div>
+{SORT_SCRIPT}
 """
+
+
+# Click-to-sort for browser viewing (web UI preview or the saved .html file).
+# Email clients strip <script>, so the emailed copy stays a static table and
+# the sort hint (display:none until revealed here) never shows there.
+SORT_SCRIPT = """<script>
+(function () {
+  var hints = document.querySelectorAll('.sort-hint');
+  for (var h = 0; h < hints.length; h++) hints[h].style.display = 'table-cell';
+  var tables = document.querySelectorAll('table.sortable');
+  for (var t = 0; t < tables.length; t++) (function (table) {
+    if (!table.tHead || !table.tBodies.length) return;
+    var ths = table.tHead.rows[0].cells;
+    var body = table.tBodies[0];
+    var dir = {};
+    for (var i = 0; i < ths.length; i++) (function (i) {
+      var th = ths[i];
+      if (!th.querySelector('.arw')) return;  // column not sortable
+      th.style.cursor = 'pointer';
+      th.title = 'Click to sort';
+      th.addEventListener('click', function () {
+        var asc = dir[i] = !dir[i];
+        var rows = Array.prototype.slice.call(body.rows);
+        rows.sort(function (a, b) {
+          var av = a.cells[i].getAttribute('data-v');
+          var bv = b.cells[i].getAttribute('data-v');
+          var cmp;
+          if (av !== null && bv !== null) {
+            cmp = parseFloat(av) - parseFloat(bv);
+          } else {
+            cmp = a.cells[i].textContent.trim().localeCompare(
+                  b.cells[i].textContent.trim(), undefined, {numeric: true});
+          }
+          return asc ? cmp : -cmp;
+        });
+        for (var r = 0; r < rows.length; r++) {
+          rows[r].style.background = r % 2 ? '#f8fafc' : '#ffffff';
+          body.appendChild(rows[r]);
+        }
+        for (var k = 0; k < ths.length; k++) {
+          var arw = ths[k].querySelector('.arw');
+          if (arw) arw.textContent = (k === i) ? (asc ? ' \\u25B2' : ' \\u25BC') : '';
+        }
+      });
+    })(i);
+  })(tables[t]);
+})();
+</script>"""

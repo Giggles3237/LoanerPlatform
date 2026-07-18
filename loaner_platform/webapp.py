@@ -105,6 +105,21 @@ def is_admin() -> bool:
     return bool(session.get("is_admin"))
 
 
+def storage_warning() -> str | None:
+    """Warn when running hosted but writing to throwaway container storage."""
+    hosted = bool(os.environ.get("RAILWAY_ENVIRONMENT")
+                  or os.environ.get("RENDER")
+                  or os.environ.get("APP_PASSWORD"))
+    if hosted and not os.environ.get("SETTINGS_PATH"):
+        return (
+            "Storage is not persistent: the SETTINGS_PATH variable is not set, so "
+            "sheets and settings are written to temporary container storage and will "
+            "be lost on every deploy or restart. Attach a volume (mount path /data) "
+            "and set SETTINGS_PATH=/data/settings.json."
+        )
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Shared page chrome
 # ---------------------------------------------------------------------------
@@ -224,6 +239,7 @@ UPLOAD_BODY = """
     </div>
   </div>
   {% if error %}<div class="err">{{ error }}</div>{% endif %}
+  {% if storage_warning %}<div class="err">&#9888; {{ storage_warning }}</div>{% endif %}
   {% if not has_sheet %}
     <div class="warn">No sheet has been generated yet — upload the two files to create the first one.</div>
   {% endif %}
@@ -253,6 +269,7 @@ def upload():
     return render_template_string(
         page("Upload data", UPLOAD_BODY),
         error=request.args.get("error"),
+        storage_warning=storage_warning(),
         has_sheet=reports.exists(),
         programs=len(rb.programs),
         program_date=rb.program_date.strftime("%m/%d/%Y") if rb.program_date else None,
@@ -374,6 +391,7 @@ ADMIN_BODY = """
   {% endif %}
   {% if message %}<div class="okmsg">{{ message }}</div>{% endif %}
   {% if error %}<div class="err">{{ error }}</div>{% endif %}
+  {% if storage_warning %}<div class="err">&#9888; {{ storage_warning }}</div>{% endif %}
 
   <form method="post" action="{{ url_for('admin_save') }}">
     <h2>Program settings</h2>
@@ -492,6 +510,7 @@ def _admin_page(message: str | None = None, error: str | None = None):
         chart=rb.discount_chart,
         programs=programs,
         has_admin_password=bool(os.environ.get("ADMIN_PASSWORD")),
+        storage_warning=storage_warning(),
         settings_path=str(store.path),
         message=message,
         error=error,

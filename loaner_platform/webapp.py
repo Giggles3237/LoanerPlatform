@@ -25,8 +25,9 @@ import json
 import os
 import secrets
 import tempfile
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from flask import (Flask, Response, redirect, render_template_string, request,
                    send_file, session, url_for)
@@ -35,7 +36,8 @@ from .fleet import process_fleet
 from .models import ModelProgram, RateBook
 from .parsers import parse_inventory, parse_ratebook, parse_vauto
 from .report import render_email
-from .settings import SettingsStore, ratebook_from_dict, ratebook_to_dict
+from .settings import (ReportStore, SettingsStore, ratebook_from_dict,
+                       ratebook_to_dict)
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 MB of uploads
@@ -62,6 +64,14 @@ def _secret_key() -> str:
 app.secret_key = _secret_key()
 
 store = SettingsStore()
+reports = ReportStore()
+
+
+def _local_time(iso_utc: str) -> str:
+    """Format a stored UTC timestamp in the dealership's timezone."""
+    tz = ZoneInfo(os.environ.get("TIMEZONE", "America/New_York"))
+    dt = datetime.fromisoformat(iso_utc).astimezone(tz)
+    return dt.strftime("%A, %B %d at %I:%M %p").replace(" 0", " ")
 
 
 # ---------------------------------------------------------------------------
@@ -148,18 +158,75 @@ def page(title: str, body: str, width: int = 680) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Team flow: generate the sheet
+# Team flow: view the latest sheet; upload new data to refresh it
 # ---------------------------------------------------------------------------
 
-HOME_BODY = """
+SHEET_TOOLBAR = """
+  <div style="max-width:860px;margin:0 auto 14px;background:#ffffff;border-radius:10px;
+              box-shadow:0 2px 10px rgba(0,0,0,.08);padding:14px 24px;
+              display:flex;justify-content:space-between;align-items:center;
+              flex-wrap:wrap;gap:10px;font-family:Arial,Helvetica,sans-serif;">
+    <div style="font-size:13px;color:#262626;">
+      <b>Data last uploaded:</b> {{ generated }}
+      <span class="muted" style="color:#6b7280;">
+        &bull; {{ meta.priced }} priced
+        {% if meta.attention %} &bull; {{ meta.attention }} need attention{% endif %}
+      </span>
+      {% if stale_rates %}
+      <div style="color:#92400e;font-size:12px;margin-top:4px;">
+        &#9888; Rates were changed after this sheet was generated — upload fresh data to reprice.
+      </div>
+      {% endif %}
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a class="btn" href="{{ url_for('upload') }}"
+         style="background:#1c69d4;color:#fff;border-radius:8px;padding:10px 20px;
+                text-decoration:none;font-weight:bold;font-size:13px;">Upload new data</a>
+      <a class="btn" href="{{ url_for('admin') }}"
+         style="background:#e5e7eb;color:#262626;border-radius:8px;padding:10px 20px;
+                text-decoration:none;font-weight:bold;font-size:13px;">&#9881; Admin</a>
+    </div>
+  </div>
+"""
+
+
+@app.route("/", methods=["GET"])
+def index():
+    saved = reports.load()
+    if saved is None:
+        return redirect(url_for("upload"))
+    body, meta = saved
+    settings_updated = store.last_updated()
+    generated_date = datetime.fromisoformat(meta["generated_at"]).date()
+    toolbar = render_template_string(
+        SHEET_TOOLBAR,
+        meta=meta,
+        generated=_local_time(meta["generated_at"]),
+        stale_rates=settings_updated is not None and settings_updated > generated_date,
+    )
+    return (
+        "<!doctype html><html><head><meta charset='utf-8'>"
+        "<title>Loaner Payment Sheet</title></head>"
+        "<body style='margin:0;background:#f3f4f6;padding:24px 12px;'>"
+        f"{toolbar}{body}</body></html>"
+    )
+
+
+UPLOAD_BODY = """
   <div class="topbar">
     <div>
-      <h1>Loaner <span>Payment Sheet</span></h1>
-      <p class="sub">Upload the two daily exports — rates come from this app's settings.</p>
+      <h1>Upload <span>fresh data</span></h1>
+      <p class="sub">The two daily exports — rates come from this app's settings.</p>
     </div>
-    <a class="btn btn2" href="{{ url_for('admin') }}">&#9881; Admin settings</a>
+    <div>
+      {% if has_sheet %}<a class="btn btn2" href="{{ url_for('index') }}">&larr; Current sheet</a>{% endif %}
+      <a class="btn btn2" href="{{ url_for('admin') }}">&#9881; Admin</a>
+    </div>
   </div>
   {% if error %}<div class="err">{{ error }}</div>{% endif %}
+  {% if not has_sheet %}
+    <div class="warn">No sheet has been generated yet — upload the two files to create the first one.</div>
+  {% endif %}
   <div class="warn" style="background:#eef4fc;color:#262626;">
     <b>{{ programs }} models</b> on the rate sheet &bull; programs through
     <b>{{ program_date or 'not set' }}</b> &bull; settings last updated
@@ -180,12 +247,13 @@ HOME_BODY = """
 """
 
 
-@app.route("/", methods=["GET"])
-def index():
+@app.route("/upload", methods=["GET"])
+def upload():
     rb = store.load()
     return render_template_string(
-        page("LoanerPlatform", HOME_BODY),
+        page("Upload data", UPLOAD_BODY),
         error=request.args.get("error"),
+        has_sheet=reports.exists(),
         programs=len(rb.programs),
         program_date=rb.program_date.strftime("%m/%d/%Y") if rb.program_date else None,
         updated=store.last_updated().strftime("%m/%d/%Y") if store.last_updated() else None,
@@ -199,11 +267,11 @@ def generate():
             tmp_path = Path(tmp)
             paths = {}
             for key in ("inventory", "vauto"):
-                upload = request.files.get(key)
-                if upload is None or not upload.filename:
-                    return redirect(url_for("index", error=f"Missing file: {key}"))
-                dest = tmp_path / f"{key}{Path(upload.filename).suffix.lower()}"
-                upload.save(dest)
+                file_upload = request.files.get(key)
+                if file_upload is None or not file_upload.filename:
+                    return redirect(url_for("upload", error=f"Missing file: {key}"))
+                dest = tmp_path / f"{key}{Path(file_upload.filename).suffix.lower()}"
+                file_upload.save(dest)
                 paths[key] = dest
             inventory = parse_inventory(paths["inventory"])
             vauto = parse_vauto(paths["vauto"])
@@ -214,14 +282,15 @@ def generate():
             report_date=date.today(),
             include_disclosures=bool(request.form.get("disclosures")),
         )
-        return (
-            "<!doctype html><html><head><meta charset='utf-8'>"
-            "<title>Loaner Payment Sheet</title></head>"
-            "<body style='margin:0;background:#f3f4f6;padding:24px 0;'>"
-            f"{body}</body></html>"
-        )
+        reports.save(body, {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "priced": len(report.priced),
+            "attention": len(report.needs_attention),
+            "mileage_updates": len(report.mileage_updates),
+        })
+        return redirect(url_for("index"))
     except Exception as exc:
-        return redirect(url_for("index", error=str(exc)))
+        return redirect(url_for("upload", error=str(exc)))
 
 
 # ---------------------------------------------------------------------------

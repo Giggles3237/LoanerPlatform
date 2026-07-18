@@ -75,6 +75,37 @@ def ratebook_from_dict(data: dict) -> RateBook:
                     program_date=program_date, **kwargs)
 
 
+class ReportStore:
+    """Persist the most recently generated sheet next to the settings file."""
+
+    def __init__(self, base_dir: str | os.PathLike | None = None):
+        if base_dir is None:
+            settings_path = os.environ.get("SETTINGS_PATH", "data/settings.json")
+            base_dir = Path(settings_path).parent
+        base = Path(base_dir)
+        self.html_path = base / "latest_sheet.html"
+        self.meta_path = base / "latest_sheet.meta.json"
+
+    def exists(self) -> bool:
+        return self.html_path.is_file() and self.meta_path.is_file()
+
+    def save(self, html: str, meta: dict) -> None:
+        self.html_path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = self.html_path.with_suffix(".tmp")
+        tmp.write_text(html, encoding="utf-8")
+        tmp.replace(self.html_path)
+        tmp = self.meta_path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(meta), encoding="utf-8")
+        tmp.replace(self.meta_path)
+
+    def load(self) -> tuple[str, dict] | None:
+        if not self.exists():
+            return None
+        html = self.html_path.read_text(encoding="utf-8")
+        meta = json.loads(self.meta_path.read_text(encoding="utf-8"))
+        return html, meta
+
+
 class SettingsStore:
     """Load/save the RateBook as JSON, falling back to the bundled seed."""
 

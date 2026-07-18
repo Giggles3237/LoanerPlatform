@@ -5,7 +5,7 @@ services:
     name: loanerplatform
     runtime: docker
     plan: free
-    healthCheckPath: /
+    healthCheckPath: /healthz
     envVars:
       - key: APP_PASSWORD
         sync: false # set in the Render dashboard; protects the pricing data

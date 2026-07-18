@@ -27,8 +27,15 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 MB of uploads
 
 
+@app.route("/healthz")
+def healthz():
+    return "ok"
+
+
 @app.before_request
 def _require_password():
+    if request.path == "/healthz":
+        return None  # hosting platforms probe this; must answer without auth
     password = os.environ.get("APP_PASSWORD")
     if not password:
         return None  # local use — no password configured

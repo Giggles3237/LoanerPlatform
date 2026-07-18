@@ -43,6 +43,14 @@ _STATUS_LABELS = {
 }
 
 
+def _brand(stock: str, model: str) -> str:
+    """BMW or MINI, from the stock prefix (PB/PM) or the model name."""
+    stock, model = (stock or "").upper(), (model or "").upper()
+    if stock.startswith("PM") or "MINI" in model:
+        return "MINI"
+    return "BMW"
+
+
 def render_email(
     report: FleetReport,
     report_date: date | None = None,
@@ -69,7 +77,7 @@ def render_email(
                 f"&#9650;</span>"
             )
         rows_html.append(f"""
-        <tr style="background:{bg};">
+        <tr data-brand="{_brand(u.stock_number, u.model)}" style="background:{bg};">
           <td style="padding:7px 10px;border-bottom:1px solid {BORDER};font-weight:bold;white-space:nowrap;">{_esc(u.stock_number)}</td>
           <td style="padding:7px 10px;border-bottom:1px solid {BORDER};">{_esc(u.model)}</td>
           <td style="padding:7px 10px;border-bottom:1px solid {BORDER};">{_esc(u.color)}</td>
@@ -99,7 +107,7 @@ def render_email(
 
     if updates:
         update_rows = "".join(
-            f"""<tr>
+            f"""<tr data-brand="{_brand(u.stock_number, u.model)}">
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};font-weight:bold;">{_esc(u.stock_number)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(u.model)}</td>
               <td data-v="{u.vauto_odometer or 0}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(u.vauto_odometer)}</td>
@@ -126,7 +134,7 @@ def render_email(
 
     if attention:
         att_rows = "".join(
-            f"""<tr>
+            f"""<tr data-brand="{_brand(u.stock_number, u.model)}">
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};font-weight:bold;">{_esc(u.stock_number)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(u.model)}</td>
               <td data-v="{u.odometer}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(u.odometer)}</td>
@@ -152,7 +160,7 @@ def render_email(
 
     if report.missing_from_vauto:
         missing_rows = "".join(
-            f"""<tr>
+            f"""<tr data-brand="{_brand(m.unit_number, m.model)}">
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};font-weight:bold;">{_esc(m.unit_number)}</td>
               <td style="padding:6px 10px;border-bottom:1px solid {BORDER};">{_esc(m.year or '')} {_esc(m.model)}</td>
               <td data-v="{m.miles or 0}" style="padding:6px 10px;border-bottom:1px solid {BORDER};text-align:right;">{_miles(m.miles)}</td>
@@ -206,6 +214,9 @@ def render_email(
     </tr>
     <tr>
       <td style="padding:14px 24px;background:#eef4fc;font-family:{FONT};font-size:13px;color:{DARK};">
+        <span id="brand-filter" style="display:none;float:right;margin-left:12px;">
+          <button data-brand="ALL" style="{_FILTER_BTN}{_FILTER_ON}border-radius:6px 0 0 6px;">All</button><button data-brand="BMW" style="{_FILTER_BTN}">BMW</button><button data-brand="MINI" style="{_FILTER_BTN}border-radius:0 6px 6px 0;">MINI</button>
+        </span>
         {stats_html}
       </td>
     </tr>
@@ -241,13 +252,33 @@ def render_email(
 """
 
 
-# Click-to-sort for browser viewing (web UI preview or the saved .html file).
-# Email clients strip <script>, so the emailed copy stays a static table and
-# the sort hint (display:none until revealed here) never shows there.
+# Segmented-control button styles for the brand filter (inline, email-safe).
+_FILTER_BTN = (
+    "font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;"
+    "padding:6px 14px;border:1px solid #1c69d4;background:#ffffff;color:#1c69d4;"
+    "cursor:pointer;"
+)
+_FILTER_ON = "background:#1c69d4;color:#ffffff;"
+
+# Click-to-sort and brand filtering for browser viewing (web UI or the saved
+# .html file). Email clients strip <script>, so the emailed copy stays a
+# static table; the sort hint and filter buttons (display:none until revealed
+# here) never show there.
 SORT_SCRIPT = """<script>
 (function () {
   var hints = document.querySelectorAll('.sort-hint');
   for (var h = 0; h < hints.length; h++) hints[h].style.display = 'table-cell';
+
+  function restripe(body) {
+    var visible = 0;
+    for (var r = 0; r < body.rows.length; r++) {
+      var row = body.rows[r];
+      if (row.style.display === 'none') continue;
+      row.style.background = visible % 2 ? '#f8fafc' : '#ffffff';
+      visible++;
+    }
+  }
+
   var tables = document.querySelectorAll('table.sortable');
   for (var t = 0; t < tables.length; t++) (function (table) {
     if (!table.tHead || !table.tBodies.length) return;
@@ -274,10 +305,8 @@ SORT_SCRIPT = """<script>
           }
           return asc ? cmp : -cmp;
         });
-        for (var r = 0; r < rows.length; r++) {
-          rows[r].style.background = r % 2 ? '#f8fafc' : '#ffffff';
-          body.appendChild(rows[r]);
-        }
+        for (var r = 0; r < rows.length; r++) body.appendChild(rows[r]);
+        restripe(body);
         for (var k = 0; k < ths.length; k++) {
           var arw = ths[k].querySelector('.arw');
           if (arw) arw.textContent = (k === i) ? (asc ? ' \\u25B2' : ' \\u25BC') : '';
@@ -285,5 +314,31 @@ SORT_SCRIPT = """<script>
       });
     })(i);
   })(tables[t]);
+
+  // Brand filter: All / BMW / MINI across every table with data-brand rows.
+  var bar = document.getElementById('brand-filter');
+  if (!bar) return;
+  bar.style.display = 'inline';
+  var buttons = bar.querySelectorAll('button');
+  function applyFilter(brand) {
+    for (var b = 0; b < buttons.length; b++) {
+      var on = buttons[b].getAttribute('data-brand') === brand;
+      buttons[b].style.background = on ? '#1c69d4' : '#ffffff';
+      buttons[b].style.color = on ? '#ffffff' : '#1c69d4';
+    }
+    var rows = document.querySelectorAll('tr[data-brand]');
+    for (var r = 0; r < rows.length; r++) {
+      var match = brand === 'ALL' || rows[r].getAttribute('data-brand') === brand;
+      rows[r].style.display = match ? '' : 'none';
+    }
+    for (var t2 = 0; t2 < tables.length; t2++) {
+      if (tables[t2].tBodies.length) restripe(tables[t2].tBodies[0]);
+    }
+  }
+  for (var b = 0; b < buttons.length; b++) (function (btn) {
+    btn.addEventListener('click', function () {
+      applyFilter(btn.getAttribute('data-brand'));
+    });
+  })(buttons[b]);
 })();
 </script>"""

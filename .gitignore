@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
+loaner_sheet.html
+# dealership data exports — never commit
+*.xls
+*.xlsx
+*.pdf

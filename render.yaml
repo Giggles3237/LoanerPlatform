@@ -9,3 +9,16 @@ services:
     envVars:
       - key: APP_PASSWORD
         sync: false # set in the Render dashboard; protects the pricing data
+      - key: ADMIN_PASSWORD
+        sync: false # separate password for /admin (rates & settings editing)
+      - key: SECRET_KEY
+        generateValue: true # signs admin sessions
+    # To keep admin settings edits across deploys, add a persistent disk
+    # (paid plans) and set SETTINGS_PATH to a file on it, e.g.:
+    # disk:
+    #   name: data
+    #   mountPath: /data
+    #   sizeGB: 1
+    # ...and under envVars:
+    #   - key: SETTINGS_PATH
+    #     value: /data/settings.json

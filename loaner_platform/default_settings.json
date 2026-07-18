@@ -1,0 +1,321 @@
+{
+  "dealership": "BMW/MINI of Pittsburgh",
+  "avp_min_miles": -1,
+  "program_mileage_limit": 15500,
+  "invoice_markup": 1000.0,
+  "acquisition_fee": 925.0,
+  "disposition_fee": 495.0,
+  "excess_mileage_rate": 0.25,
+  "annual_mileage_allowance": 10000,
+  "invoice_pct_under_break": 0.96,
+  "invoice_pct_over_break": 0.94,
+  "invoice_mileage_break": 1000,
+  "avp_base_deduction": 995.0,
+  "avp_pct": 0.05,
+  "avp_flat_credit": 300.0,
+  "residual_mile_charge": 0.25,
+  "residual_free_miles": 500,
+  "program_date": "2026-07-15",
+  "discount_chart": [
+    [
+      0,
+      0.0
+    ],
+    [
+      1000,
+      0.0
+    ],
+    [
+      4000,
+      800.0
+    ],
+    [
+      5000,
+      1600.0
+    ],
+    [
+      6000,
+      2500.0
+    ],
+    [
+      7500,
+      3500.0
+    ],
+    [
+      10000,
+      5900.0
+    ],
+    [
+      15000,
+      6900.0
+    ]
+  ],
+  "programs": [
+    {
+      "model": "2025 BMW 2 Series 228 xDrive Gran Coupe",
+      "money_factor": 0.00095,
+      "residual_pct": 0.57,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2025 BMW 3 Series 330i xDrive",
+      "money_factor": 0.00105,
+      "residual_pct": 0.57,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2025 BMW 4 Series 430i xDrive",
+      "money_factor": 0.002,
+      "residual_pct": 0.54,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2025 BMW 5 Series 530i xDrive",
+      "money_factor": 0.0014,
+      "residual_pct": 0.57,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2025 BMW 8 Series 840",
+      "money_factor": 0.0018,
+      "residual_pct": 0.53,
+      "lease_incentive": 8000.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2025 BMW i4 xDrive40",
+      "money_factor": 0.0002,
+      "residual_pct": 0.54,
+      "lease_incentive": 7500.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2025 BMW i5 xDrive40",
+      "money_factor": 0.0005,
+      "residual_pct": 0.5,
+      "lease_incentive": 7500.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2025 BMW X1 xDrive28i",
+      "money_factor": 0.00135,
+      "residual_pct": 0.56,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2025 BMW X3 30 xDrive",
+      "money_factor": 0.0018,
+      "residual_pct": 0.57,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2025 BMW X7 M60i",
+      "money_factor": 0.0014,
+      "residual_pct": 0.52,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW 8 Series 840i xDrive Gran Coupe",
+      "money_factor": 0.0021,
+      "residual_pct": 0.53,
+      "lease_incentive": 2000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW 4 Series 430i xDrive Gran Coupe",
+      "money_factor": 0.00235,
+      "residual_pct": 0.54,
+      "lease_incentive": 0.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW 2 Series 228 Gran Coupe",
+      "money_factor": 0.00095,
+      "residual_pct": 0.57,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW 2 Series M235i xDrive",
+      "money_factor": 0.00095,
+      "residual_pct": 0.57,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW 3 Series 330i xDrive",
+      "money_factor": 0.0009,
+      "residual_pct": 0.57,
+      "lease_incentive": 1000.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW 5 Series 530i xDrive",
+      "money_factor": 0.0014,
+      "residual_pct": 0.58,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW 7 Series 740i xDrive",
+      "money_factor": 0.0007,
+      "residual_pct": 0.53,
+      "lease_incentive": 2000.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW 8 Series 840",
+      "money_factor": 0.0021,
+      "residual_pct": 0.53,
+      "lease_incentive": 3000.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW i7 xDrive60",
+      "money_factor": 0.001,
+      "residual_pct": 0.53,
+      "lease_incentive": 7500.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW iX xDrive45",
+      "money_factor": 0.00175,
+      "residual_pct": 0.53,
+      "lease_incentive": 7500.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW X1 M35i",
+      "money_factor": 0.0017,
+      "residual_pct": 0.56,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW X1 xDrive28i",
+      "money_factor": 0.0017,
+      "residual_pct": 0.56,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW X2 xDrive28i",
+      "money_factor": 0.0022,
+      "residual_pct": 0.55,
+      "lease_incentive": 0.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW X3 30 xDrive",
+      "money_factor": 0.0017,
+      "residual_pct": 0.57,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW X5 M60i",
+      "money_factor": 0.0019,
+      "residual_pct": 0.52,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW X5 xDrive40i",
+      "money_factor": 0.0018,
+      "residual_pct": 0.52,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW X5 xDrive50e",
+      "money_factor": 0.00175,
+      "residual_pct": 0.51,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 BMW X7 xDrive40i",
+      "money_factor": 0.00135,
+      "residual_pct": 0.53,
+      "lease_incentive": 0.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 MINI Cooper",
+      "money_factor": 0.0022,
+      "residual_pct": 0.55,
+      "lease_incentive": 500.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 MINI Cooper S",
+      "money_factor": 0.0022,
+      "residual_pct": 0.58,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 MINI Cooper S Countryman",
+      "money_factor": 0.0022,
+      "residual_pct": 0.58,
+      "lease_incentive": 1000.0,
+      "lease_39_month": true
+    },
+    {
+      "model": "2026 MINI Cooper S Covertible",
+      "money_factor": 0.0023,
+      "residual_pct": 0.58,
+      "lease_incentive": 0.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 MINI Cooper Convertible",
+      "money_factor": 0.0023,
+      "residual_pct": 0.55,
+      "lease_incentive": 0.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 MINI Cooper 4 Dr",
+      "money_factor": 0.0022,
+      "residual_pct": 0.55,
+      "lease_incentive": 500.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 MINI Cooper S 4 Dr",
+      "money_factor": 0.0022,
+      "residual_pct": 0.58,
+      "lease_incentive": 500.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2025 BMW 7 Series 750e xDrive",
+      "money_factor": 0.0013,
+      "residual_pct": 0.53,
+      "lease_incentive": 5750.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW 4 Series 430i Gran Coupe",
+      "money_factor": 0.00235,
+      "residual_pct": 0.54,
+      "lease_incentive": 0.0,
+      "lease_39_month": false
+    },
+    {
+      "model": "2026 BMW 4 Series 430i xDrive",
+      "money_factor": 0.00235,
+      "residual_pct": 0.54,
+      "lease_incentive": 0.0,
+      "lease_39_month": false
+    }
+  ]
+}

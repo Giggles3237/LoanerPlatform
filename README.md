@@ -1,20 +1,38 @@
 # LoanerPlatform
 
-Turns the three files you already produce every day into a ready-to-send
-**HTML loaner payment sheet** — with current miles, updated pricing, and
-available lease payments for the whole loaner fleet.
+The living loaner payment sheet. Team members upload the two daily exports
+and get a ready-to-send **HTML payment sheet** — current miles, updated
+pricing, and available lease payments for the whole loaner fleet. Rates,
+residuals, incentives, and every discount rule live **inside the app**,
+editable by admins at `/admin` — the Simple Calculator spreadsheet's whole
+job, absorbed.
 
-## The three inputs
+## The two daily inputs
 
 | File | Source | What it provides |
 |---|---|---|
 | **Full Inventory Report** (`.xlsx`) | Loaner fleet software (TSD) | Current miles for every active unit — the source of truth for mileage |
 | **Payment Calculator export** (`.xls`/`.xlsx`) | vAuto | Every loaner (including retired): stock #, model, color, odometer, list price, sales cost, MSRP |
-| **Simple Calculator** (`.xlsx`) | Your rates workbook | `Rates and Residuals` sheet: money factors, residuals, lease incentives, 39-month flags, the mileage discount chart, and program limits |
 
-Rates are read from the Simple Calculator **every run**, so updating money
-factors/residuals/incentives in that workbook is all you need to do when
-programs change — no code changes.
+## The built-in rate sheet (admin only)
+
+Everything that used to live in the Simple Calculator workbook is stored in
+the app and edited at **`/admin`** (requires the `ADMIN_PASSWORD`):
+
+- **Rates, residuals & incentives** — money factor, residual %, lease
+  incentive, and the 39-month flag per model; add or remove models
+- **Mileage discount chart** — the miles-to-discount breakpoints
+- **Formula settings** — invoice % of MSRP (low/high mileage), sale-price
+  markup, AVP calculation (deduction, percent, credit, mileage threshold),
+  residual per-mile charge and free miles, program mileage limit, fees,
+  dealership name, and the programs-valid-through date
+- **Import / backup** — bulk-import a Simple Calculator `.xlsx` (the old
+  workbook still works as a loading dock), and export/restore settings as
+  JSON backups
+
+Settings persist to `data/settings.json` (override with the
+`SETTINGS_PATH` env var). The app ships seeded with the dealership's
+current rates, so it works out of the box.
 
 ## Quick start
 
@@ -24,9 +42,12 @@ pip install -r requirements.txt
 python -m loaner_platform \
     --inventory Full_Inventory_Report.xlsx \
     --vauto Payment_Calculator.xls \
-    --calculator Simple_Calculator_2026.xlsx \
     --out loaner_sheet.html
 ```
+
+The CLI uses the app's stored settings by default; pass
+`--calculator Simple_Calculator.xlsx` or `--settings backup.json` to price
+with a specific rate source instead.
 
 `loaner_sheet.html` is an email-client-safe body (inline CSS, table layout —
 renders in Outlook/Gmail). Paste it into an email or send it with your mail
@@ -105,8 +126,10 @@ The repo includes a `Dockerfile` and a `render.yaml` blueprint:
 1. Create a free account at [render.com](https://render.com) and connect your
    GitHub.
 2. **New + → Blueprint**, pick this repository.
-3. When prompted, set **APP_PASSWORD** — the app requires it on every visit,
-   which matters because the sheet shows cost and profit-relevant numbers.
+3. When prompted, set **APP_PASSWORD** (every visitor needs it — the sheet
+   shows cost data) and **ADMIN_PASSWORD** (required to open `/admin` and
+   change rates or settings). Use different values so the team can generate
+   sheets without being able to edit pricing.
 4. Render builds the Docker image and gives you a permanent URL
    (e.g. `https://loanerplatform.onrender.com`) anyone at the store can open,
    drop the three files into, and get the sheet.

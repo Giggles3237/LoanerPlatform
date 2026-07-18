@@ -29,8 +29,11 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Full Inventory Report (.xlsx) from the fleet software")
     parser.add_argument("--vauto", required=True,
                         help="Payment Calculator export (.xls/.xlsx) from vAuto")
-    parser.add_argument("--calculator", required=True,
-                        help="Simple Calculator workbook (.xlsx) with rates and programs")
+    parser.add_argument("--calculator", default=None,
+                        help="Optional Simple Calculator workbook (.xlsx); "
+                             "defaults to the app's stored settings")
+    parser.add_argument("--settings", default=None,
+                        help="Optional settings.json (an admin-panel export)")
     parser.add_argument("--out", default="loaner_sheet.html",
                         help="Output HTML file (default: loaner_sheet.html)")
     parser.add_argument("--date", default=None,
@@ -46,7 +49,17 @@ def main(argv: list[str] | None = None) -> int:
 
     inventory = parse_inventory(args.inventory)
     vauto = parse_vauto(args.vauto)
-    ratebook = parse_ratebook(args.calculator)
+    if args.calculator:
+        ratebook = parse_ratebook(args.calculator)
+    elif args.settings:
+        import json
+
+        from .settings import ratebook_from_dict
+        with open(args.settings, encoding="utf-8") as fh:
+            ratebook = ratebook_from_dict(json.load(fh))
+    else:
+        from .settings import SettingsStore
+        ratebook = SettingsStore().load()
     report = process_fleet(inventory, vauto, ratebook)
 
     html_body = render_email(report, report_date=report_date,

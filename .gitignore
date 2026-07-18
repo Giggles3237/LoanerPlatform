@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .venv/
 loaner_sheet.html
+data/
 # dealership data exports — never commit
 *.xls
 *.xlsx

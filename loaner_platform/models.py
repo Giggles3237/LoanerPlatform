@@ -48,7 +48,11 @@ class ModelProgram:
 
 @dataclass
 class RateBook:
-    """Everything parsed from the Simple Calculator workbook."""
+    """All pricing settings: model programs, discount chart, formula knobs.
+
+    Originally parsed from the Simple Calculator workbook; now also stored
+    and edited in the app itself (see settings.py / the admin panel).
+    """
 
     programs: dict[str, ModelProgram]
     # Sorted (min_miles, discount) breakpoints; VLOOKUP-style range match.
@@ -62,6 +66,15 @@ class RateBook:
     disposition_fee: float = 495.0
     excess_mileage_rate: float = 0.25
     annual_mileage_allowance: int = 10000
+    # Invoice / AVP / residual formula settings (Primary sheet constants)
+    invoice_pct_under_break: float = 0.96
+    invoice_pct_over_break: float = 0.94
+    invoice_mileage_break: int = 1000
+    avp_base_deduction: float = 995.0
+    avp_pct: float = 0.05
+    avp_flat_credit: float = 300.0
+    residual_mile_charge: float = 0.25
+    residual_free_miles: int = 500
 
     def lookup_program(self, model: str) -> ModelProgram | None:
         model = model.strip()

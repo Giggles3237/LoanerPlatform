@@ -21,15 +21,6 @@ import math
 
 from .models import PricedUnit, RateBook, VAutoVehicle
 
-INVOICE_PCT_UNDER_1K = 0.96
-INVOICE_PCT_OVER_1K = 0.94
-INVOICE_MILEAGE_BREAK = 1000
-AVP_BASE_DEDUCTION = 995.0
-AVP_PCT = 0.05
-AVP_FLAT_CREDIT = 300.0
-RESIDUAL_MILE_CHARGE = 0.25
-RESIDUAL_FREE_MILES = 500
-
 
 def excel_round(value: float, digits: int = 0) -> float:
     """Excel ROUND: half away from zero (Python's round is banker's)."""
@@ -75,10 +66,13 @@ def price_unit(
         return unit
 
     unit.invoice = unit.msrp * (
-        INVOICE_PCT_UNDER_1K if miles < INVOICE_MILEAGE_BREAK else INVOICE_PCT_OVER_1K
+        ratebook.invoice_pct_under_break
+        if miles < ratebook.invoice_mileage_break
+        else ratebook.invoice_pct_over_break
     )
     unit.avp = (
-        (unit.msrp - AVP_BASE_DEDUCTION) * AVP_PCT - AVP_FLAT_CREDIT
+        (unit.msrp - ratebook.avp_base_deduction) * ratebook.avp_pct
+        - ratebook.avp_flat_credit
         if miles > ratebook.avp_min_miles
         else 0.0
     )
@@ -113,7 +107,8 @@ def price_unit(
         return unit
 
     unit.residual_amount = (
-        unit.msrp * unit.residual_pct - (miles - RESIDUAL_FREE_MILES) * RESIDUAL_MILE_CHARGE
+        unit.msrp * unit.residual_pct
+        - (miles - ratebook.residual_free_miles) * ratebook.residual_mile_charge
     )
     incentive = unit.lease_incentive if unit.incentive_eligible else 0.0
     unit.depreciation = unit.sale_price - unit.residual_amount - incentive

@@ -1,0 +1,97 @@
+.loaner-sheet-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.loaner-sheet-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 14px 20px;
+  margin-bottom: 14px;
+}
+
+.loaner-sheet-status {
+  font-size: 13px;
+  color: #262626;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.loaner-sheet-counts {
+  color: #6b7280;
+}
+
+.loaner-sheet-stale {
+  color: #92400e;
+  font-size: 12px;
+}
+
+.loaner-sheet-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.loaner-btn {
+  background: #1c69d4;
+  color: #ffffff !important;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.loaner-btn:hover {
+  background: #155ab6;
+  text-decoration: none;
+}
+
+.loaner-btn-secondary {
+  background: #e5e7eb;
+  color: #262626 !important;
+}
+
+.loaner-btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.loaner-sheet-frame {
+  width: 100%;
+  border: 0;
+  min-height: 600px;
+  background: transparent;
+}
+
+.loaner-sheet-loading,
+.loaner-sheet-error,
+.loaner-sheet-empty {
+  max-width: 640px;
+  margin: 48px auto;
+  text-align: center;
+  font-size: 15px;
+  color: #262626;
+}
+
+.loaner-sheet-error {
+  color: #991b1b;
+}
+
+.loaner-sheet-empty h2 {
+  margin-bottom: 8px;
+}
+
+.loaner-sheet-empty p {
+  color: #6b7280;
+  margin-bottom: 18px;
+}

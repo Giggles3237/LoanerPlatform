@@ -1,0 +1,172 @@
+.loaner-settings-page {
+  max-width: 980px;
+  margin: 32px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 28px 32px;
+}
+
+.loaner-settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.loaner-settings-header h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  color: #262626;
+}
+
+.loaner-settings-header p {
+  color: #6b7280;
+  font-size: 13px;
+  margin: 0;
+}
+
+.loaner-settings-page h3 {
+  font-size: 16px;
+  color: #262626;
+  margin: 28px 0 10px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 6px;
+}
+
+.loaner-settings-hint {
+  color: #6b7280;
+  font-size: 12px;
+  margin: 0 0 8px;
+}
+
+.loaner-settings-ok {
+  background: #f0fdf4;
+  color: #166534;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin: 16px 0 0;
+}
+
+.loaner-settings-error {
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin: 16px 0 0;
+}
+
+.loaner-settings-loading {
+  max-width: 640px;
+  margin: 48px auto;
+  text-align: center;
+  color: #262626;
+}
+
+.loaner-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px 18px;
+}
+
+.loaner-settings-grid label {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+  color: #262626;
+  margin: 8px 0 4px;
+}
+
+.loaner-settings-grid input {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.loaner-settings-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+
+.loaner-settings-chart {
+  max-width: 420px;
+}
+
+.loaner-settings-table th {
+  background: #262626;
+  color: #ffffff;
+  padding: 7px 9px;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.loaner-settings-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.loaner-settings-table input[type='text'],
+.loaner-settings-table input[type='number'] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.loaner-settings-center {
+  text-align: center;
+}
+
+.loaner-row-remove {
+  background: none;
+  border: 0;
+  color: #991b1b;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.loaner-row-add {
+  background: none;
+  border: 0;
+  color: #1c69d4;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 8px;
+  padding: 0;
+}
+
+.loaner-settings-save {
+  margin-top: 24px;
+}
+
+.loaner-settings-io {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.loaner-settings-io label {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+  color: #262626;
+  margin: 0 0 6px;
+}
+
+.loaner-settings-io form input[type='file'] {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+}

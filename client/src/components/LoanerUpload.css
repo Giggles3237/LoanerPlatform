@@ -1,0 +1,78 @@
+.loaner-upload-page {
+  max-width: 640px;
+  margin: 32px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 28px 32px;
+}
+
+.loaner-upload-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loaner-upload-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #262626;
+}
+
+.loaner-upload-back {
+  font-size: 13px;
+  text-decoration: none;
+  color: #1c69d4;
+  font-weight: bold;
+}
+
+.loaner-upload-sub {
+  color: #6b7280;
+  font-size: 13px;
+  margin: 6px 0 18px;
+}
+
+.loaner-upload-error {
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.loaner-upload-label {
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 16px 0 6px;
+  color: #262626;
+}
+
+.loaner-upload-label small {
+  color: #6b7280;
+  font-weight: normal;
+}
+
+.loaner-upload-page input[type='file'] {
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.loaner-upload-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.loaner-upload-check {
+  font-size: 13px;
+  color: #262626;
+}

@@ -86,6 +86,38 @@ One intentional fix vs. the spreadsheet: the disclosure text now states the
 actual lease term ("for 39 months"); the workbook's Disclosure1 formula pulled
 a model name from a misaligned cell.
 
+## Deploying it as an application
+
+### Option A — run it on one PC (simplest)
+
+Install [Python](https://www.python.org/downloads/) (check "Add python.exe to
+PATH" during install), download this repo (green **Code** button → Download
+ZIP, or `git clone`), and double-click **`run_windows.bat`**. It installs the
+dependencies, starts the app, and opens http://localhost:5000 in your browser.
+Pin that page or the .bat file to your taskbar and it behaves like a desktop
+app. On Mac/Linux: `pip install -r requirements.txt && python -m
+loaner_platform.webapp`.
+
+### Option B — host it so the whole store can use it
+
+The repo includes a `Dockerfile` and a `render.yaml` blueprint:
+
+1. Create a free account at [render.com](https://render.com) and connect your
+   GitHub.
+2. **New + → Blueprint**, pick this repository.
+3. When prompted, set **APP_PASSWORD** — the app requires it on every visit,
+   which matters because the sheet shows cost and profit-relevant numbers.
+4. Render builds the Docker image and gives you a permanent URL
+   (e.g. `https://loanerplatform.onrender.com`) anyone at the store can open,
+   drop the three files into, and get the sheet.
+
+The same Dockerfile works on Railway, Fly.io, Azure App Service, or any
+machine with Docker (`docker build -t loanerplatform . && docker run -p
+8000:8000 -e APP_PASSWORD=yourpassword loanerplatform`).
+
+Note the free Render tier sleeps after inactivity — the first visit of the
+day takes ~30 seconds to wake. Paid tiers ($7/mo) stay warm.
+
 ## Development
 
 ```bash

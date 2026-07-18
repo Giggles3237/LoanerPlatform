@@ -3,21 +3,42 @@
 Run with:
     python -m loaner_platform.webapp
 then open http://localhost:5000
+
+Set the APP_PASSWORD environment variable to require a password — do this
+whenever the app is hosted anywhere beyond your own PC, since the sheet
+contains cost data.
 """
 
 from __future__ import annotations
 
+import hmac
+import os
 import tempfile
 from datetime import date
 from pathlib import Path
 
-from flask import Flask, render_template_string, request
+from flask import Flask, Response, render_template_string, request
 
 from .fleet import process_fleet
 from .parsers import parse_inventory, parse_ratebook, parse_vauto
 from .report import render_email
 
 app = Flask(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 MB of uploads
+
+
+@app.before_request
+def _require_password():
+    password = os.environ.get("APP_PASSWORD")
+    if not password:
+        return None  # local use — no password configured
+    auth = request.authorization
+    if auth and auth.password and hmac.compare_digest(auth.password, password):
+        return None
+    return Response(
+        "Password required.", 401,
+        {"WWW-Authenticate": 'Basic realm="LoanerPlatform"'},
+    )
 
 PAGE = """<!doctype html>
 <html>
@@ -105,7 +126,7 @@ def index():
 
 
 def main() -> None:
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
 
 
 if __name__ == "__main__":

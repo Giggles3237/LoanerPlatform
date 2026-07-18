@@ -1,0 +1,11 @@
+# One-click deploy on Render (https://render.com):
+# New + -> Blueprint -> point at this repo. Set APP_PASSWORD when prompted.
+services:
+  - type: web
+    name: loanerplatform
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: APP_PASSWORD
+        sync: false # set in the Render dashboard; protects the pricing data

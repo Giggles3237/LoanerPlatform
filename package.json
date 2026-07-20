@@ -1,0 +1,12 @@
+{
+  "name": "loanerplatform",
+  "version": "1.0.0",
+  "description": "Heroku deploy shim: the app lives in node/ (see node/README.md)",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "heroku-postbuild": "npm --prefix node ci --omit=dev",
+    "start": "npm --prefix node start"
+  }
+}

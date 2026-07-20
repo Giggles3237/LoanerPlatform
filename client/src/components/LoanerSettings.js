@@ -3,6 +3,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { API_BASE_URL } from '../config';
 import './LoanerSettings.css';
+// While the loaner service runs standalone (before the bopchipboard merge),
+// point these pages at it with REACT_APP_LOANER_API_BASE_URL; once merged,
+// leave that unset and the chipboard API base is used.
+const LOANER_API = process.env.REACT_APP_LOANER_API_BASE_URL || API_BASE_URL;
 
 // Admin-only editor for the loaner pricing settings: model programs (money
 // factor, residual, incentive, term), the mileage discount chart, and every
@@ -41,7 +45,7 @@ function LoanerSettings() {
     let cancelled = false;
     (async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/loaner-pricing/settings`);
+        const response = await axios.get(`${LOANER_API}/loaner-pricing/settings`);
         if (!cancelled) setSettings(response.data.settings);
       } catch (err) {
         if (!cancelled) setError(err.response?.data?.message || 'Failed to load settings');
@@ -111,7 +115,7 @@ function LoanerSettings() {
       for (const [name, , step] of CONFIG_FIELDS) {
         if (step !== 'text') payload[name] = Number(payload[name]);
       }
-      const response = await axios.put(`${API_BASE_URL}/loaner-pricing/settings`, payload);
+      const response = await axios.put(`${LOANER_API}/loaner-pricing/settings`, payload);
       setSettings(response.data.settings);
       setMessage('Settings saved. New uploads will price with these rates.');
     } catch (err) {
@@ -130,7 +134,7 @@ function LoanerSettings() {
       const formData = new FormData();
       formData.append('workbook', workbookFile);
       const response = await axios.post(
-        `${API_BASE_URL}/loaner-pricing/settings/import`, formData);
+        `${LOANER_API}/loaner-pricing/settings/import`, formData);
       setSettings(response.data.settings);
       setMessage(response.data.message);
     } catch (err) {
@@ -140,7 +144,7 @@ function LoanerSettings() {
 
   const handleExport = async () => {
     const response = await axios.get(
-      `${API_BASE_URL}/loaner-pricing/settings/export`, { responseType: 'blob' });
+      `${LOANER_API}/loaner-pricing/settings/export`, { responseType: 'blob' });
     const url = URL.createObjectURL(response.data);
     const link = document.createElement('a');
     link.href = url;

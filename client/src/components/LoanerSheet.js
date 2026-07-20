@@ -5,6 +5,10 @@ import { useAuth } from '../contexts/AuthContext';
 import { format } from 'date-fns';
 import { API_BASE_URL } from '../config';
 import './LoanerSheet.css';
+// While the loaner service runs standalone (before the bopchipboard merge),
+// point these pages at it with REACT_APP_LOANER_API_BASE_URL; once merged,
+// leave that unset and the chipboard API base is used.
+const LOANER_API = process.env.REACT_APP_LOANER_API_BASE_URL || API_BASE_URL;
 
 // The latest loaner payment sheet. The sheet HTML comes fully rendered from
 // the backend (same document that can be pasted into an email); it is shown
@@ -24,7 +28,7 @@ function LoanerSheet() {
     let cancelled = false;
     (async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/loaner-pricing/sheet`);
+        const response = await axios.get(`${LOANER_API}/loaner-pricing/sheet`);
         if (!cancelled) setSheet(response.data);
       } catch (err) {
         if (cancelled) return;

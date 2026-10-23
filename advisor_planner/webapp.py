@@ -650,6 +650,8 @@ ADMIN_BODY = """
           {% set v = s.rules[key][name] %}
           {% if kind == 'bool' %}
             <label><input type="checkbox" name="r_{{ key }}_{{ name }}" {% if v %}checked{% endif %}> {{ label }}</label>
+          {% elif kind == 'text' %}
+            <label>{{ label }}</label><input type="text" name="r_{{ key }}_{{ name }}" value="{{ v }}">
           {% elif kind == 'list' %}
             <label>{{ label }}</label><input type="text" name="r_{{ key }}_{{ name }}" value="{{ v|join(', ') }}">
           {% else %}
@@ -750,6 +752,8 @@ def settings_from_form(form, current: dict) -> dict:
                 s["rules"][key][name] = bool(form.get(field))
             elif kind == "list":
                 s["rules"][key][name] = _csv(form.get(field))
+            elif kind == "text":
+                s["rules"][key][name] = (form.get(field) or "").strip()
             else:
                 raw = (form.get(field) or "").strip()
                 if raw == "":

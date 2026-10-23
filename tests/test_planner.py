@@ -160,10 +160,11 @@ def test_plan_end_to_end(data):
     assert "Dina Valant" in tasks and "Old Lead" not in tasks and "Sold Guy" not in tasks
     assert plan["stats"]["suppressed"]["sold_or_not_interested"] == 1
 
-    # Mason: VinSolutions lead + Infobahn lease merged by name; rep wins ownership.
+    # Mason: VinSolutions lead (Gregg) + Infobahn lease merged by name. Lease
+    # routing outranks the showroom rep: Ed originated it (Infobahn, no MM match).
     mason = tasks["Mason Woyt"]
     assert {r["rule"] for r in mason["reasons"]} == {"showroom", "lease_maturity"}
-    assert mason["owner"] == "Gregg Lewis" and mason["phones"] == ["(412) 400-6641"]
+    assert mason["owner"] == "Ed Mathieu" and mason["phones"] == ["(412) 400-6641"]
 
     # Margot: Infobahn + Mastermind merged by VIN; departed advisor -> unowned, reassigned.
     margot = tasks["Margot Penn"]
@@ -182,8 +183,8 @@ def test_capacity_and_mix_limits(data):
     plan = build_plan(*data, s, WEEK)
     for a in plan["advisors"]:
         assert a["tasks"] <= 1
-    gregg = next(a for a in plan["advisors"] if a["name"] == "Gregg Lewis")
-    assert gregg["own_not_scheduled"] == 1
+    ed = next(a for a in plan["advisors"] if a["name"] == "Ed Mathieu")
+    assert ed["own_not_scheduled"] == 1  # Mason's lease + Pat Orphan, room for one
 
 
 def test_disabled_rule_and_no_distribution(data):
@@ -239,3 +240,54 @@ def test_webapp_flow(tmp_path, monkeypatch, vin_file, infobahn_file, mastermind_
     assert c.get("/plan/2026-10-26/plans.xlsx").data[:2] == b"PK"
     assert c.post("/regenerate", data={"week_start": "2026-10-26"}).status_code == 302
     assert c.get("/plan/../../etc").status_code == 404
+
+
+def test_roster_employee_code_spelling():
+    roster = Roster(normalize_settings({})["advisors"])
+    assert roster.resolve("Lewis - 90290") == "Gregg Lewis"
+    assert roster.resolve("Mathieu - 90015") == "Ed Mathieu"
+    assert roster.resolve("Lasko - 54195") == ""
+
+
+NAMES = {"L1": "Adams", "L2": "Baker", "L3": "Clark", "L4": "Davis"}
+
+
+def _lease(vin, advisor, maturity="11/23/2026"):
+    from advisor_planner.models import FSAccount
+    return FSAccount(customer=f"Lessee {NAMES[vin]}", cosigner="", phones=["(412) 555-0101"],
+                     email="", in_market_tier="", contract_date=date(2023, 10, 1),
+                     maturity=datetime.strptime(maturity, "%m/%d/%Y").date(),
+                     contract_type="Lease", contract_miles=36000, payment=900, equity=1000,
+                     vin=vin, year="2024", vehicle="BMW X5", odometer=20000,
+                     last_service=None, advisor=advisor, warranty_type="",
+                     warranty_status="", warranty_expires=None, service_contract="No")
+
+
+def test_lease_routing(data):
+    leads, _, records = data
+    from advisor_planner.models import MastermindRecord
+    accounts = [
+        _lease("L1", "CHRIS LASKO"),       # MM says Gregg originated -> Gregg
+        _lease("L2", "GREGG LEWIS"),       # MM says departed rep originated -> Ed
+        _lease("L3", "River Riffey"),      # no MM match -> Infobahn advisor originated
+        _lease("L4", "KENNETH WILSON"),    # departed, no MM -> Ed
+    ]
+    mm = lambda vin, orig: MastermindRecord(
+        customer=f"Lessee {NAMES[vin]}", cobuyer="", phones=[], email="", email_ok=True,
+        household_demand=False, vin=vin, year="", make="", model="", trim="",
+        lease_mileage_status="", warranty_months_left=None, assignee="Orphan Mastermind",
+        status="Presented", sub_status="NotReady", original_salesperson=orig,
+        vehicle_type="", contract_end=None, deal_type="Lease", payment=None,
+        payment_difference=None, trade_equity=None, months_owned=None, new_vehicle="",
+        new_payment=None)
+    records = records + [mm("L1", "Lewis - 90290"), mm("L2", "Laurene Willis")]
+    plan = build_plan(leads, accounts, records, normalize_settings({}), WEEK)
+    owners = {t["key"]: (t["owner"], t["owner_basis"]) for t in plan["tasks"]}
+    assert owners["vin:L1"] == ("Gregg Lewis", "Lease originated by this advisor")
+    assert owners["vin:L2"] == ("Ed Mathieu", "Lease maturity owner (sold by Laurene Willis)")
+    assert owners["vin:L3"][0] == "River Riffey"
+    assert owners["vin:L4"][0] == "Ed Mathieu"
+
+    off = normalize_settings({"rules": {"lease_maturity": {"originator_keeps": False}}})
+    plan = build_plan(leads, accounts, records, off, WEEK)
+    assert {t["owner"] for t in plan["tasks"] if t["key"].startswith("vin:L")} == {"Ed Mathieu"}

@@ -32,10 +32,16 @@ data, so those three columns are identified by their contents.
    VinSolutions leads merge by name, but only when exactly one match exists
    and the contact details don't conflict. A customer flagged by several
    rules ranks higher, and the task shows every reason.
-3. **Ownership.** The VinSolutions rep comes first, then the Infobahn client advisor,
+3. **Ownership.** Lease maturities belong to the salesperson who originated the
+   lease (Mastermind's original salesperson, matched by VIN; otherwise the
+   Infobahn client advisor) when they're an active advisor, and to the lease
+   owner (Ed Mathieu) otherwise. This outranks every other ownership source,
+   and the lease owner isn't held to the lease mix limit. For everything
+   else, the VinSolutions rep comes first, then the Infobahn client advisor,
    then the Mastermind assignee. An orphan goes to its original salesperson
    when that person is on the roster. Name spellings are matched through
-   the roster's aliases, ignoring case and middle names/initials.
+   the roster's aliases, ignoring case and middle names/initials;
+   Mastermind's "Lewis - 90290" form matches on a unique last name.
 4. **Left out:** customers marked Sold / Not Interested in Mastermind, and anyone
    already given to an advisor in the last 2 weeks. The exception is a
    customer with a new VinSolutions lead since then, who is brought back.

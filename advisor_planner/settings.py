@@ -58,6 +58,8 @@ DEFAULT_SETTINGS: dict = {
             "weight": 90,
             "days_before": 180,
             "days_after": 45,
+            "owner": "Ed Mathieu",
+            "originator_keeps": True,
         },
         "retail_payoff": {
             "enabled": True,
@@ -107,12 +109,17 @@ RULE_SPECS = [
       ("exclude_sources", "Skip lead sources containing", "list"),
       ("walk_in_bonus", "Extra priority for walk-ins", "int")]),
     ("lease_maturity", "Lease maturity", "Infobahn",
-     "BMW FS leases maturing soon, or recently matured and not yet turned in.",
+     "BMW FS leases maturing soon, or recently matured and not yet turned in. They go to the "
+     "lease owner unless the salesperson who originated the lease (Mastermind original "
+     "salesperson, else Infobahn client advisor) is an active advisor. This outranks every "
+     "other ownership source, and the lease owner isn't held to the per-advisor limit.",
      [("enabled", "Include", "bool"),
       ("weight", "Priority weight", "int"),
       ("max_per_advisor", "Max per advisor per week (0 = no limit)", "int"),
       ("days_before", "Maturing within (days)", "int"),
-      ("days_after", "…or matured up to (days ago)", "int")]),
+      ("days_after", "…or matured up to (days ago)", "int"),
+      ("owner", "Lease owner (roster name)", "text"),
+      ("originator_keeps", "Originating salesperson keeps their leases", "bool")]),
     ("retail_payoff", "Retail payoff & equity", "Infobahn",
      "BMW FS retail contracts near payoff, flagged in-market by BMW FS, or with strong "
      "equity well into the term. Any one condition qualifies.",
@@ -189,6 +196,8 @@ def normalize_settings(data: dict) -> dict:
                 rule[name] = float(rule[name])
             elif kind == "list":
                 rule[name] = [str(x).strip() for x in rule[name] if str(x).strip()]
+            elif kind == "text":
+                rule[name] = str(rule[name] or "").strip()
     return s
 
 

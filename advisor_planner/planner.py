@@ -6,9 +6,11 @@ Pipeline:
     2. Reasons for the same customer are merged into one task — Infobahn and
        Mastermind by VIN, VinSolutions leads by name (only when the name is
        unambiguous). A customer flagged by several rules ranks higher.
-    3. Each task gets an owner from the roster: VinSolutions sales rep first,
-       then Infobahn client advisor, then Mastermind assignee (or original
-       salesperson). Anyone else's customers are 'unowned'.
+    3. Each task gets an owner from the roster. Lease maturities go to the
+       salesperson who originated the lease if they're an active advisor,
+       otherwise to the lease owner (Ed Mathieu). Everyone else: VinSolutions
+       sales rep first, then Infobahn client advisor, then Mastermind assignee
+       (or original salesperson). Anyone else's customers are 'unowned'.
     4. Customers marked Sold / Not Interested in Mastermind, and customers
        already tasked within the cooldown window, are left out.
     5. Advisors get their own customers by priority up to their weekly
@@ -74,11 +76,19 @@ class Roster:
                 self._lookup[full] = a["name"]
                 self._lookup.setdefault(name_key(spelling), a["name"])
         self._active = set(self.active)
+        last_names: dict[str, set[str]] = defaultdict(set)
+        for a in advisors:
+            last_names[_tokens(a["name"])[-1]].add(a["name"])
+        self._by_last = {last: names.pop() for last, names in last_names.items()
+                         if len(names) == 1}
 
     def resolve(self, raw: str) -> str:
         """Roster name for an active advisor, or '' (unknown, departed, inactive)."""
         tokens = " ".join(_tokens(raw or ""))
         name = self._lookup.get(tokens) or self._lookup.get(name_key(raw or ""))
+        coded = re.fullmatch(r"\s*([A-Za-z'-]+)\s*-\s*\d+\s*", raw or "")
+        if not name and coded:  # Mastermind's "Lewis - 90290" (last name - employee #)
+            name = self._by_last.get(coded.group(1).lower())
         return name if name in self._active else ""
 
 
@@ -290,7 +300,8 @@ class _Merger:
 
     def add(self, reason: dict, *, customer: str, vin: str = "", phones=(), email: str = "",
             email_ok: bool = True, vehicle: str = "", owner_raw: str = "",
-            owner_basis: str = "", fallback_owner_raw: str = "") -> None:
+            owner_basis: str = "", fallback_owner_raw: str = "",
+            force_owner: str = "") -> None:
         phones = list(phones)
         task = self._find(vin, customer, phones, email)
         if task is None:
@@ -309,6 +320,9 @@ class _Merger:
         task.do_not_email = task.do_not_email or not email_ok
         task.vehicle = task.vehicle or vehicle
 
+        if force_owner:
+            task.owner, task.owner_basis, task.previous_owner = force_owner, owner_basis, ""
+            return
         if not task.owner:
             owner = self.roster.resolve(owner_raw)
             basis = owner_basis
@@ -351,6 +365,22 @@ def build_plan(leads: list[Lead], accounts: list[FSAccount], records: list[Maste
                    phones=[lead.phone] if lead.phone else [], email=lead.email,
                    owner_raw=lead.rep, owner_basis="VinSolutions sales rep")
 
+    # Lease maturities: the salesperson who originated the lease keeps it when
+    # they're an active advisor; everything else goes to the lease owner.
+    lease_cfg = rules["lease_maturity"]
+    lease_owner = roster.resolve(lease_cfg["owner"])
+    originators = {r.vin: r.original_salesperson for r in records if r.vin}
+
+    def lease_routing(acct: FSAccount) -> tuple[str, str]:
+        originator_raw = originators.get(acct.vin) or acct.advisor
+        originator = roster.resolve(originator_raw) if lease_cfg["originator_keeps"] else ""
+        if originator:
+            return originator, "Lease originated by this advisor"
+        if lease_owner:
+            was = f" (sold by {originator_raw})" if originator_raw else ""
+            return lease_owner, f"Lease maturity owner{was}"
+        return "", ""
+
     for acct in accounts:
         found = [r for r in (rule_lease_maturity(acct, rules["lease_maturity"], week_start),
                              rule_retail_payoff(acct, rules["retail_payoff"], week_start),
@@ -361,9 +391,13 @@ def build_plan(leads: list[Lead], accounts: list[FSAccount], records: list[Maste
             suppressed["sold_or_not_interested"] += 1
             continue
         for reason in found:
+            forced, basis = "", "Infobahn client advisor"
+            if reason["rule"] == "lease_maturity":
+                forced, basis = lease_routing(acct)
+                basis = basis or "Infobahn client advisor"
             merger.add(reason, customer=acct.customer, vin=acct.vin, phones=acct.phones,
                        email=acct.email, vehicle=acct.description, owner_raw=acct.advisor,
-                       owner_basis="Infobahn client advisor")
+                       owner_basis=basis, force_owner=forced)
 
     use_original = s["unowned"]["use_original_salesperson"]
     for rec in records:
@@ -421,6 +455,8 @@ def build_plan(leads: list[Lead], accounts: list[FSAccount], records: list[Maste
             return False
         rule = task.primary["rule"]
         limit = rules[rule]["max_per_advisor"]
+        if rule == "lease_maturity" and name == lease_owner:
+            limit = 0  # leases are the lease owner's job, not part of their mix
         return not (enforce_mix and limit and per_rule[name][rule] >= limit)
 
     def give(name: str, task: Task, reassigned: bool) -> None:

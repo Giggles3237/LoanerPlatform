@@ -1,5 +1,9 @@
 # LoanerPlatform
 
+> This repo also contains the **Advisor Task Planner**: weekly client-advisor
+> task plans built from VinSolutions, Infobahn and Mastermind exports. See
+> [`advisor_planner/README.md`](advisor_planner/README.md).
+
 The living loaner payment sheet. Team members upload the two daily exports
 and get a ready-to-send **HTML payment sheet** — current miles, updated
 pricing, and available lease payments for the whole loaner fleet. Rates,
